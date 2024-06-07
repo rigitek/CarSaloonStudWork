@@ -1,3 +1,5 @@
+using CarSaloon.Models;
+
 namespace CarSaloon
 {
     internal static class Program

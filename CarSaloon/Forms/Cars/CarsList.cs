@@ -16,5 +16,19 @@ namespace CarSaloon.Cars
         {
             InitializeComponent();
         }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            Menu menu = new Menu();
+            menu.Show();
+            this.Hide();
+        }
+
+        private void CarsList_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Menu menu = new Menu();
+            menu.Show();
+            
+        }
     }
 }

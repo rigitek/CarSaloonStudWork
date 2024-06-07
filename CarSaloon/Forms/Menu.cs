@@ -1,10 +1,12 @@
 using CarSaloon.Cars;
 using CarSaloon.Forms.Sales;
+using CarSaloon.Models;
 
 namespace CarSaloon
 {
     public partial class Menu : Form
     {
+        CarSaloonContext db = new CarSaloonContext();
         public Menu()
         {
             InitializeComponent();
@@ -20,6 +22,7 @@ namespace CarSaloon
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+            Application.Exit();
         }
 
         private void clientsButton_Click(object sender, EventArgs e)
@@ -34,6 +37,11 @@ namespace CarSaloon
             SalesList salesList = new SalesList();
             salesList.Show();
             this.Hide();
+        }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+            db.Database.EnsureCreated();
         }
     }
 }

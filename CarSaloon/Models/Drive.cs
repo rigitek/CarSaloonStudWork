@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarSaloon.Models
 {
-    public class EngineLocation
+    public class Drive
     {
         public int Id { get; set; }
         public string Title { get; set; }

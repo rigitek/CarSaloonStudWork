@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CarSaloon.Models
 {
-    public class Engine
+    public class Transmission
     {
-       public int Id { get; set; }
-       public string Title { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
     }
 }
