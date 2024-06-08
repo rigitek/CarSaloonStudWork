@@ -78,13 +78,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(333, 288);
+            ClientSize = new Size(322, 287);
             Controls.Add(exitButton);
             Controls.Add(salesButton);
             Controls.Add(clientsButton);
             Controls.Add(carsButton);
             Name = "Menu";
-            Text = "Form1";
+            Text = "Автосалон \"АвтоПрофи\"";
             ResumeLayout(false);
         }
 

@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
-            clientBindingSource = new BindingSource(components);
             backButton = new Button();
             label1 = new Label();
             nameTextBox = new TextBox();
@@ -46,32 +44,29 @@
             addButton = new Button();
             editButton = new Button();
             deleteButton = new Button();
+            cleanButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)clientBindingSource).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(12, 12);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(685, 283);
+            dataGridView1.Size = new Size(700, 283);
             dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // clientBindingSource
-            // 
-            clientBindingSource.DataSource = typeof(Models.Client);
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // backButton
             // 
             backButton.Location = new Point(12, 388);
             backButton.Name = "backButton";
-            backButton.Size = new Size(157, 30);
+            backButton.Size = new Size(140, 30);
             backButton.TabIndex = 1;
             backButton.Text = "Назад";
             backButton.UseVisualStyleBackColor = true;
@@ -90,12 +85,12 @@
             // 
             nameTextBox.Location = new Point(52, 301);
             nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new Size(300, 23);
+            nameTextBox.Size = new Size(315, 23);
             nameTextBox.TabIndex = 3;
             // 
             // passportTextBox
             // 
-            passportTextBox.Location = new Point(418, 301);
+            passportTextBox.Location = new Point(433, 301);
             passportTextBox.Name = "passportTextBox";
             passportTextBox.Size = new Size(279, 23);
             passportTextBox.TabIndex = 5;
@@ -103,7 +98,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(358, 304);
+            label2.Location = new Point(373, 304);
             label2.Name = "label2";
             label2.Size = new Size(54, 15);
             label2.TabIndex = 4;
@@ -112,7 +107,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(358, 333);
+            label3.Location = new Point(373, 333);
             label3.Name = "label3";
             label3.Size = new Size(47, 15);
             label3.TabIndex = 6;
@@ -122,7 +117,7 @@
             // 
             adressTextBox.Location = new Point(58, 359);
             adressTextBox.Name = "adressTextBox";
-            adressTextBox.Size = new Size(557, 23);
+            adressTextBox.Size = new Size(572, 23);
             adressTextBox.TabIndex = 9;
             // 
             // label4
@@ -138,7 +133,7 @@
             // 
             phoneTextBox.Location = new Point(73, 330);
             phoneTextBox.Name = "phoneTextBox";
-            phoneTextBox.Size = new Size(279, 23);
+            phoneTextBox.Size = new Size(294, 23);
             phoneTextBox.TabIndex = 13;
             // 
             // label6
@@ -154,7 +149,7 @@
             // 
             paymantComboBox.FormattingEnabled = true;
             paymantComboBox.Items.AddRange(new object[] { "Наличный", "Безналичный" });
-            paymantComboBox.Location = new Point(411, 330);
+            paymantComboBox.Location = new Point(426, 330);
             paymantComboBox.Name = "paymantComboBox";
             paymantComboBox.Size = new Size(286, 23);
             paymantComboBox.TabIndex = 14;
@@ -162,7 +157,7 @@
             // deliveryCheckBox
             // 
             deliveryCheckBox.AutoSize = true;
-            deliveryCheckBox.Location = new Point(621, 361);
+            deliveryCheckBox.Location = new Point(636, 361);
             deliveryCheckBox.Name = "deliveryCheckBox";
             deliveryCheckBox.Size = new Size(76, 19);
             deliveryCheckBox.TabIndex = 15;
@@ -171,9 +166,9 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(175, 388);
+            addButton.Location = new Point(158, 388);
             addButton.Name = "addButton";
-            addButton.Size = new Size(170, 30);
+            addButton.Size = new Size(140, 30);
             addButton.TabIndex = 16;
             addButton.Text = "Добавить";
             addButton.UseVisualStyleBackColor = true;
@@ -181,28 +176,42 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(351, 388);
+            editButton.Enabled = false;
+            editButton.Location = new Point(304, 388);
             editButton.Name = "editButton";
-            editButton.Size = new Size(170, 30);
+            editButton.Size = new Size(140, 30);
             editButton.TabIndex = 17;
             editButton.Text = "Изменить";
             editButton.UseVisualStyleBackColor = true;
+            editButton.Click += editButton_Click;
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(527, 388);
+            deleteButton.Enabled = false;
+            deleteButton.Location = new Point(450, 388);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(170, 30);
+            deleteButton.Size = new Size(140, 30);
             deleteButton.TabIndex = 18;
             deleteButton.Text = "Удалить";
             deleteButton.UseVisualStyleBackColor = true;
             deleteButton.Click += deleteButton_Click;
             // 
+            // cleanButton
+            // 
+            cleanButton.Location = new Point(596, 388);
+            cleanButton.Name = "cleanButton";
+            cleanButton.Size = new Size(116, 30);
+            cleanButton.TabIndex = 19;
+            cleanButton.Text = "Очистить";
+            cleanButton.UseVisualStyleBackColor = true;
+            cleanButton.Click += cleanButton_Click;
+            // 
             // ClientsList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(713, 429);
+            ClientSize = new Size(725, 429);
+            Controls.Add(cleanButton);
             Controls.Add(deleteButton);
             Controls.Add(editButton);
             Controls.Add(addButton);
@@ -223,7 +232,6 @@
             Text = "ClientsList";
             FormClosing += ClientsList_FormClosing;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)clientBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -246,6 +254,6 @@
         private Button addButton;
         private Button editButton;
         private Button deleteButton;
-        private BindingSource clientBindingSource;
+        private Button cleanButton;
     }
 }
