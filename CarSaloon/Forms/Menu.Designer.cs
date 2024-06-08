@@ -85,6 +85,7 @@
             Controls.Add(carsButton);
             Name = "Menu";
             Text = "Автосалон \"АвтоПрофи\"";
+            FormClosed += Menu_FormClosed;
             ResumeLayout(false);
         }
 

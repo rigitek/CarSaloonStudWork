@@ -43,5 +43,10 @@ namespace CarSaloon
         {
             db.Database.EnsureCreated();
         }
+
+        private void Menu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
