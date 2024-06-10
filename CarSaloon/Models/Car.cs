@@ -12,7 +12,6 @@ namespace CarSaloon.Models
         public string Model { get; set; }
         public bool Available { get; set; }
         public int Price { get; set; }
-        public byte[] Image { get; set; }
         public  Country? Country { get; set; }
         public Brand? Brand { get; set; }
         public  TechData? TechData { get; set; }
