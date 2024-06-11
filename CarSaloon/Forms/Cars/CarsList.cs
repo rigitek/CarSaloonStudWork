@@ -23,9 +23,20 @@ namespace CarSaloon.Cars
             InitializeComponent();
 
             db.Cars.Load();
+            db.Countries.Load();
+            db.Brands.Load();
+            db.TechData.Load();
+            db.Transmissions.Load();
+            db.Bodies.Load();
+            db.Drives.Load();
+            db.EngineTypes.Load();
+
             dataGridView1.DataSource = db.Cars.Local.ToBindingList();
 
-            
+            dataGridView1.Columns["Id"].Visible = false;
+            dataGridView1.Columns["TechData"].Visible = false;
+
+            dataGridView1.Columns["Model"].HeaderText = "Модель";
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -80,18 +91,59 @@ namespace CarSaloon.Cars
 
                 Car car = db.Cars.Find(id);
 
-                //bodyLabel.Text = car.TechData.Body.Title.ToString();
+                bodyLabel.Text = "Кузов: ";
+                bodyLabel.Text += car.TechData.Body.Title;
                 driveLabel.Text = "Привод: ";
-                driveLabel.Text += car.TechData.ToString();
+                driveLabel.Text += car.TechData.Drive.Title;
+                engineTypeLabel.Text = "Двигатель: ";
+                engineTypeLabel.Text += car.TechData.EngineType.Title;
+                transmissionLabel.Text = "Трансмиссия: ";
+                transmissionLabel.Text += car.TechData.Transmission.Title;
+                doorsLabel.Text = "Кол-во дверей: ";
+                doorsLabel.Text += car.TechData.Doors;
+                seatsLabel.Text = "Кол-во мест: ";
+                seatsLabel.Text += car.TechData.Seats;
+                horsePowerLabel.Text = "Мощность: ";
+                horsePowerLabel.Text += car.TechData.HorsePower + " л.с.";
+                engineCapacityLabel.Text = "Объем двигателя: ";
+                engineCapacityLabel.Text += car.TechData.EngineCapacity+" литров";
             }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
             AddCar addCar = new AddCar();
-            addCar.Show();
 
-            dataGridView1.Refresh();
+            addCar.Show();
+            
+                dataGridView1.Refresh();
+
+
+            this.Hide();
+            
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int index = dataGridView1.SelectedRows[0].Index;
+                int id = 0;
+                bool converted = Int32.TryParse(dataGridView1[0, index].Value.ToString(), out id);
+                if (converted == false)
+                    return;
+
+                Car car = db.Cars.Find(id);
+                db.Cars.Remove(car);
+                db.SaveChanges();
+
+                MessageBox.Show("Автомобиль удален");
+            }
+        }
+
+        private void FormRefresh()
+        {
+            this.Refresh();
         }
     }
 }

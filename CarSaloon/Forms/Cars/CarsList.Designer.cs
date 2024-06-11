@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             backButton = new Button();
             countryComboBox = new ComboBox();
             label1 = new Label();
@@ -36,20 +37,28 @@
             cleanCountryButton = new Button();
             cleanBrandButton = new Button();
             dataGridView1 = new DataGridView();
+            carBindingSource = new BindingSource(components);
             addButton = new Button();
             editButton = new Button();
             deleteButton = new Button();
             label3 = new Label();
             bodyLabel = new Label();
             driveLabel = new Label();
+            engineTypeLabel = new Label();
+            transmissionLabel = new Label();
+            doorsLabel = new Label();
+            seatsLabel = new Label();
+            horsePowerLabel = new Label();
+            engineCapacityLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)carBindingSource).BeginInit();
             SuspendLayout();
             // 
             // backButton
             // 
-            backButton.Location = new Point(600, 330);
+            backButton.Location = new Point(568, 319);
             backButton.Name = "backButton";
-            backButton.Size = new Size(172, 30);
+            backButton.Size = new Size(204, 30);
             backButton.TabIndex = 0;
             backButton.Text = "Назад";
             backButton.UseVisualStyleBackColor = true;
@@ -127,15 +136,19 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(582, 300);
+            dataGridView1.Size = new Size(550, 289);
             dataGridView1.TabIndex = 9;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
+            // carBindingSource
+            // 
+            carBindingSource.DataSource = typeof(Models.Car);
             // 
             // addButton
             // 
             addButton.Location = new Point(282, 26);
             addButton.Name = "addButton";
-            addButton.Size = new Size(100, 23);
+            addButton.Size = new Size(90, 23);
             addButton.TabIndex = 10;
             addButton.Text = "Добавить";
             addButton.UseVisualStyleBackColor = true;
@@ -143,29 +156,30 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(388, 26);
+            editButton.Location = new Point(378, 26);
             editButton.Name = "editButton";
-            editButton.Size = new Size(100, 23);
+            editButton.Size = new Size(90, 23);
             editButton.TabIndex = 11;
             editButton.Text = "Изменить";
             editButton.UseVisualStyleBackColor = true;
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(494, 26);
+            deleteButton.Location = new Point(474, 26);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(100, 23);
+            deleteButton.Size = new Size(90, 23);
             deleteButton.TabIndex = 12;
             deleteButton.Text = "Удалить";
             deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12.5F);
-            label3.Location = new Point(600, 26);
+            label3.Font = new Font("Segoe UI", 15F);
+            label3.Location = new Point(570, 21);
             label3.Name = "label3";
-            label3.Size = new Size(174, 23);
+            label3.Size = new Size(201, 28);
             label3.TabIndex = 13;
             label3.Text = "Технические данные";
             // 
@@ -173,7 +187,7 @@
             // 
             bodyLabel.AutoSize = true;
             bodyLabel.Font = new Font("Segoe UI", 10F);
-            bodyLabel.Location = new Point(600, 60);
+            bodyLabel.Location = new Point(568, 60);
             bodyLabel.Name = "bodyLabel";
             bodyLabel.Size = new Size(48, 19);
             bodyLabel.TabIndex = 14;
@@ -183,17 +197,83 @@
             // 
             driveLabel.AutoSize = true;
             driveLabel.Font = new Font("Segoe UI", 10F);
-            driveLabel.Location = new Point(600, 79);
+            driveLabel.Location = new Point(568, 79);
             driveLabel.Name = "driveLabel";
             driveLabel.Size = new Size(61, 19);
             driveLabel.TabIndex = 15;
             driveLabel.Text = "Привод:";
             // 
+            // engineTypeLabel
+            // 
+            engineTypeLabel.AutoSize = true;
+            engineTypeLabel.Font = new Font("Segoe UI", 10F);
+            engineTypeLabel.Location = new Point(568, 98);
+            engineTypeLabel.Name = "engineTypeLabel";
+            engineTypeLabel.Size = new Size(101, 19);
+            engineTypeLabel.TabIndex = 16;
+            engineTypeLabel.Text = "Тип двигателя:";
+            // 
+            // transmissionLabel
+            // 
+            transmissionLabel.AutoSize = true;
+            transmissionLabel.Font = new Font("Segoe UI", 10F);
+            transmissionLabel.Location = new Point(568, 117);
+            transmissionLabel.Name = "transmissionLabel";
+            transmissionLabel.Size = new Size(120, 19);
+            transmissionLabel.TabIndex = 17;
+            transmissionLabel.Text = "Тип трансмиссии:";
+            // 
+            // doorsLabel
+            // 
+            doorsLabel.AutoSize = true;
+            doorsLabel.Font = new Font("Segoe UI", 10F);
+            doorsLabel.Location = new Point(568, 136);
+            doorsLabel.Name = "doorsLabel";
+            doorsLabel.Size = new Size(105, 19);
+            doorsLabel.TabIndex = 18;
+            doorsLabel.Text = "Кол-во дверей:";
+            // 
+            // seatsLabel
+            // 
+            seatsLabel.AutoSize = true;
+            seatsLabel.Font = new Font("Segoe UI", 10F);
+            seatsLabel.Location = new Point(568, 155);
+            seatsLabel.Name = "seatsLabel";
+            seatsLabel.Size = new Size(89, 19);
+            seatsLabel.TabIndex = 19;
+            seatsLabel.Text = "Кол-во мест:";
+            // 
+            // horsePowerLabel
+            // 
+            horsePowerLabel.AutoSize = true;
+            horsePowerLabel.Font = new Font("Segoe UI", 10F);
+            horsePowerLabel.Location = new Point(568, 174);
+            horsePowerLabel.Name = "horsePowerLabel";
+            horsePowerLabel.Size = new Size(80, 19);
+            horsePowerLabel.TabIndex = 20;
+            horsePowerLabel.Text = "Мощность:";
+            // 
+            // engineCapacityLabel
+            // 
+            engineCapacityLabel.AutoSize = true;
+            engineCapacityLabel.Font = new Font("Segoe UI", 10F);
+            engineCapacityLabel.Location = new Point(568, 193);
+            engineCapacityLabel.Name = "engineCapacityLabel";
+            engineCapacityLabel.Size = new Size(122, 19);
+            engineCapacityLabel.TabIndex = 21;
+            engineCapacityLabel.Text = "Объем двигателя:";
+            // 
             // CarsList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(784, 371);
+            ClientSize = new Size(784, 361);
+            Controls.Add(engineCapacityLabel);
+            Controls.Add(horsePowerLabel);
+            Controls.Add(seatsLabel);
+            Controls.Add(doorsLabel);
+            Controls.Add(transmissionLabel);
+            Controls.Add(engineTypeLabel);
             Controls.Add(driveLabel);
             Controls.Add(bodyLabel);
             Controls.Add(label3);
@@ -212,6 +292,7 @@
             Text = "CarsList";
             FormClosing += CarsList_FormClosing;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)carBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -232,5 +313,12 @@
         private Label label3;
         private Label bodyLabel;
         private Label driveLabel;
+        private BindingSource carBindingSource;
+        private Label engineTypeLabel;
+        private Label transmissionLabel;
+        private Label doorsLabel;
+        private Label seatsLabel;
+        private Label horsePowerLabel;
+        private Label engineCapacityLabel;
     }
 }
