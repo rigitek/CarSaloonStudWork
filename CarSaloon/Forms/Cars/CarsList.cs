@@ -11,6 +11,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CarSaloon.Cars
@@ -22,21 +23,18 @@ namespace CarSaloon.Cars
         {
             InitializeComponent();
 
-            db.Cars.Load();
-            db.Countries.Load();
-            db.Brands.Load();
-            db.TechData.Load();
-            db.Transmissions.Load();
-            db.Bodies.Load();
-            db.Drives.Load();
-            db.EngineTypes.Load();
+            DBRefresh();
 
-            dataGridView1.DataSource = db.Cars.Local.ToBindingList();
+            dataGridView1.DataSource = db.Cars.Local.ToList();
 
             dataGridView1.Columns["Id"].Visible = false;
             dataGridView1.Columns["TechData"].Visible = false;
 
             dataGridView1.Columns["Model"].HeaderText = "Модель";
+            dataGridView1.Columns["Country"].HeaderText = "Страна";
+            dataGridView1.Columns["Available"].HeaderText = "Наличие";
+            dataGridView1.Columns["Price"].HeaderText = "Цена";
+            dataGridView1.Columns["Brand"].HeaderText = "Производитель";
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -67,16 +65,15 @@ namespace CarSaloon.Cars
             countryComboBox.ValueMember = "Id";
         }
 
-        private void cleanCountryButton_Click(object sender, EventArgs e)
-        {
-            countryComboBox.DataSource = null;
-            countryComboBox.Text = "Не выбрано";
-        }
-
         private void cleanBrandButton_Click(object sender, EventArgs e)
         {
             brandComboBox.DataSource = null;
             brandComboBox.Text = "Не выбрано";
+
+            countryComboBox.DataSource = null;
+            countryComboBox.Text = "Не выбрано";
+
+            dataGridView1.DataSource = db.Cars.Local.ToList();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -106,21 +103,16 @@ namespace CarSaloon.Cars
                 horsePowerLabel.Text = "Мощность: ";
                 horsePowerLabel.Text += car.TechData.HorsePower + " л.с.";
                 engineCapacityLabel.Text = "Объем двигателя: ";
-                engineCapacityLabel.Text += car.TechData.EngineCapacity+" литров";
+                engineCapacityLabel.Text += car.TechData.EngineCapacity + " литров";
             }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            AddCar addCar = new AddCar();
+            new AddCar().ShowDialog();
 
-            addCar.Show();
-            
-                dataGridView1.Refresh();
-
-
-            this.Hide();
-            
+            db.Cars.Load();
+            dataGridView1.DataSource = db.Cars.Local.ToList();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -138,12 +130,66 @@ namespace CarSaloon.Cars
                 db.SaveChanges();
 
                 MessageBox.Show("Автомобиль удален");
+
+                db.Cars.Load();
+                dataGridView1.DataSource = db.Cars.Local.ToList();
             }
         }
 
-        private void FormRefresh()
+        private void countryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Refresh();
+            if (brandComboBox.DataSource == null)
+            {
+                dataGridView1.DataSource = db.Cars.Local.Where(x => x.Country == countryComboBox.SelectedItem).ToList();
+            }
+            else
+            {
+                dataGridView1.DataSource = db.Cars.Local.Where(x => x.Country == countryComboBox.SelectedItem && x.Brand == brandComboBox.SelectedItem).ToList();
+            }
+        }
+
+        private void brandComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (countryComboBox.DataSource == null)
+            {
+                dataGridView1.DataSource = db.Cars.Local.Where(x => x.Brand == brandComboBox.SelectedItem).ToList();
+            }
+            else
+            {
+                dataGridView1.DataSource = db.Cars.Local.Where(x => x.Brand == brandComboBox.SelectedItem && x.Country == countryComboBox.SelectedItem).ToList();
+            }
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int index = dataGridView1.SelectedRows[0].Index;
+                int id = 0;
+                bool converted = Int32.TryParse(dataGridView1[0, index].Value.ToString(), out id);
+                if (converted == false)
+                    return;
+
+                Car car = db.Cars.Find(id);
+                new AddCar(car).ShowDialog();
+
+                DBRefresh();
+                dataGridView1.DataSource = db.Cars.Local.ToList();
+            }
+
+            dataGridView1.DataSource = db.Cars.Local.ToList();
+        }
+
+        private void DBRefresh()
+        {
+            db.Cars.Load();
+            db.Countries.Load();
+            db.Brands.Load();
+            db.TechData.Load();
+            db.Transmissions.Load();
+            db.Bodies.Load();
+            db.Drives.Load();
+            db.EngineTypes.Load();
         }
     }
 }

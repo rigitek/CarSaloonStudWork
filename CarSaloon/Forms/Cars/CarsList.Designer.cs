@@ -34,7 +34,6 @@
             label1 = new Label();
             label2 = new Label();
             brandComboBox = new ComboBox();
-            cleanCountryButton = new Button();
             cleanBrandButton = new Button();
             dataGridView1 = new DataGridView();
             carBindingSource = new BindingSource(components);
@@ -72,6 +71,7 @@
             countryComboBox.Size = new Size(100, 23);
             countryComboBox.TabIndex = 2;
             countryComboBox.Text = "Не выбрано";
+            countryComboBox.SelectedIndexChanged += countryComboBox_SelectedIndexChanged;
             countryComboBox.Click += countryComboBox_Click;
             // 
             // label1
@@ -86,7 +86,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(147, 9);
+            label2.Location = new Point(118, 9);
             label2.Name = "label2";
             label2.Size = new Size(95, 15);
             label2.TabIndex = 5;
@@ -95,33 +95,22 @@
             // brandComboBox
             // 
             brandComboBox.FormattingEnabled = true;
-            brandComboBox.Location = new Point(147, 27);
+            brandComboBox.Location = new Point(118, 27);
             brandComboBox.Name = "brandComboBox";
             brandComboBox.Size = new Size(100, 23);
             brandComboBox.TabIndex = 4;
             brandComboBox.Text = "Не выбрано";
+            brandComboBox.SelectedIndexChanged += brandComboBox_SelectedIndexChanged;
             brandComboBox.Click += brandComboBox_Click;
-            // 
-            // cleanCountryButton
-            // 
-            cleanCountryButton.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            cleanCountryButton.Location = new Point(118, 27);
-            cleanCountryButton.Name = "cleanCountryButton";
-            cleanCountryButton.Size = new Size(23, 23);
-            cleanCountryButton.TabIndex = 6;
-            cleanCountryButton.Text = "X";
-            cleanCountryButton.TextAlign = ContentAlignment.MiddleRight;
-            cleanCountryButton.UseVisualStyleBackColor = true;
-            cleanCountryButton.Click += cleanCountryButton_Click;
             // 
             // cleanBrandButton
             // 
-            cleanBrandButton.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            cleanBrandButton.Location = new Point(253, 27);
+            cleanBrandButton.Font = new Font("Segoe UI", 9F);
+            cleanBrandButton.Location = new Point(224, 9);
             cleanBrandButton.Name = "cleanBrandButton";
-            cleanBrandButton.Size = new Size(23, 23);
+            cleanBrandButton.Size = new Size(52, 41);
             cleanBrandButton.TabIndex = 7;
-            cleanBrandButton.Text = "X";
+            cleanBrandButton.Text = "Сброс";
             cleanBrandButton.TextAlign = ContentAlignment.MiddleRight;
             cleanBrandButton.UseVisualStyleBackColor = true;
             cleanBrandButton.Click += cleanBrandButton_Click;
@@ -146,9 +135,9 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(282, 26);
+            addButton.Location = new Point(282, 9);
             addButton.Name = "addButton";
-            addButton.Size = new Size(90, 23);
+            addButton.Size = new Size(90, 40);
             addButton.TabIndex = 10;
             addButton.Text = "Добавить";
             addButton.UseVisualStyleBackColor = true;
@@ -156,18 +145,19 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(378, 26);
+            editButton.Location = new Point(378, 9);
             editButton.Name = "editButton";
-            editButton.Size = new Size(90, 23);
+            editButton.Size = new Size(90, 40);
             editButton.TabIndex = 11;
             editButton.Text = "Изменить";
             editButton.UseVisualStyleBackColor = true;
+            editButton.Click += editButton_Click;
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(474, 26);
+            deleteButton.Location = new Point(474, 9);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(90, 23);
+            deleteButton.Size = new Size(90, 40);
             deleteButton.TabIndex = 12;
             deleteButton.Text = "Удалить";
             deleteButton.UseVisualStyleBackColor = true;
@@ -282,7 +272,6 @@
             Controls.Add(addButton);
             Controls.Add(dataGridView1);
             Controls.Add(cleanBrandButton);
-            Controls.Add(cleanCountryButton);
             Controls.Add(label2);
             Controls.Add(brandComboBox);
             Controls.Add(label1);
@@ -304,9 +293,7 @@
         private Label label1;
         private Label label2;
         private ComboBox brandComboBox;
-        private Button cleanCountryButton;
         private Button cleanBrandButton;
-        private DataGridView dataGridView1;
         private Button addButton;
         private Button editButton;
         private Button deleteButton;
@@ -315,10 +302,11 @@
         private Label driveLabel;
         private BindingSource carBindingSource;
         private Label engineTypeLabel;
-        private Label transmissionLabel;
         private Label doorsLabel;
         private Label seatsLabel;
         private Label horsePowerLabel;
         private Label engineCapacityLabel;
+        public Label transmissionLabel;
+        public DataGridView dataGridView1;
     }
 }

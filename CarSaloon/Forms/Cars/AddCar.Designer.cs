@@ -56,6 +56,7 @@
             label7 = new Label();
             label6 = new Label();
             button1 = new Button();
+            button2 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)doorsNumericUpDown).BeginInit();
@@ -331,11 +332,23 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // button2
+            // 
+            button2.Location = new Point(12, 205);
+            button2.Name = "button2";
+            button2.Size = new Size(507, 30);
+            button2.TabIndex = 14;
+            button2.Text = "Сохранить";
+            button2.UseVisualStyleBackColor = true;
+            button2.Visible = false;
+            button2.Click += button2_Click;
+            // 
             // AddCar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(526, 241);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(groupBox1);
             Controls.Add(groupBox2);
@@ -381,5 +394,6 @@
         private NumericUpDown engineCapacityNumericUpDown;
         protected internal ComboBox driveComboBox;
         protected internal ComboBox bodyComboBox;
+        private Button button2;
     }
 }
