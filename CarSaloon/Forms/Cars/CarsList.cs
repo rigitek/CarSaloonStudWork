@@ -73,7 +73,7 @@ namespace CarSaloon.Cars
             countryComboBox.DataSource = null;
             countryComboBox.Text = "Не выбрано";
 
-            dataGridView1.DataSource = db.Cars.Local.ToList();
+            dataGridView1.DataSource = db.Cars.ToList();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -112,7 +112,8 @@ namespace CarSaloon.Cars
             new AddCar().ShowDialog();
 
             db.Cars.Load();
-            dataGridView1.DataSource = db.Cars.Local.ToList();
+            dataGridView1.DataSource = db.Cars.ToList();
+            dataGridView1.Refresh();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -132,7 +133,7 @@ namespace CarSaloon.Cars
                 MessageBox.Show("Автомобиль удален");
 
                 db.Cars.Load();
-                dataGridView1.DataSource = db.Cars.Local.ToList();
+                dataGridView1.DataSource = db.Cars.ToList();
             }
         }
 
@@ -172,12 +173,15 @@ namespace CarSaloon.Cars
 
                 Car car = db.Cars.Find(id);
                 new AddCar(car).ShowDialog();
+                
+                db.SaveChanges();
+
+                MessageBox.Show("Автомобиль изменен");
 
                 DBRefresh();
-                dataGridView1.DataSource = db.Cars.Local.ToList();
+                dataGridView1.DataSource = db.Cars.ToList();
             }
 
-            dataGridView1.DataSource = db.Cars.Local.ToList();
         }
 
         private void DBRefresh()

@@ -76,16 +76,16 @@ namespace CarSaloon.Forms.Cars
             driveComboBox.DisplayMember = "Title";
             driveComboBox.ValueMember = "Id";
 
-            brandComboBox.SelectedItem = car.Brand.Id;
-            countryComboBox.SelectedItem = car.Country.Id;
+            brandComboBox.SelectedValue = car.Brand.Id;
+            countryComboBox.SelectedValue = car.Country.Id;
             modelTextBox.Text = car.Model;
             priceTextBox.Text = car.Price.ToString();
             availableCheckBox.Checked = car.Available;
 
-            bodyComboBox.SelectedItem = car.TechData.Body.Id;
-            driveComboBox.SelectedItem = car.TechData.Drive.Id;
-            transmissionComboBox.SelectedItem = car.TechData.Transmission.Id;
-            engineTypeComboBox.SelectedItem = car.TechData.EngineType.Id;
+            bodyComboBox.SelectedValue = car.TechData.Body.Id;
+            driveComboBox.SelectedValue = car.TechData.Drive.Id;
+            transmissionComboBox.SelectedValue = car.TechData.Transmission.Id;
+            engineTypeComboBox.SelectedValue = car.TechData.EngineType.Id;
             engineCapacityNumericUpDown.Value = (decimal)car.TechData.EngineCapacity;
             seatsNumericUpDown.Value = car.TechData.Seats;
             doorsNumericUpDown.Value = car.TechData.Doors;
