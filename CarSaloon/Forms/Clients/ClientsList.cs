@@ -23,6 +23,17 @@ namespace CarSaloon.Cars
             db.Clients.Load();
             dataGridView1.DataSource = db.Clients.Local.ToBindingList();
 
+            dataGridView1.Columns["Id"].Visible = false;
+
+            dataGridView1.Columns["Name"].HeaderText = "ФИО";
+            dataGridView1.Columns["Phone"].HeaderText = "Номер телефона";
+            dataGridView1.Columns["Passport"].HeaderText = "Паспорт";
+            dataGridView1.Columns["Address"].HeaderText = "Адрес";
+            dataGridView1.Columns["Delivery"].HeaderText = "Доставка";
+            dataGridView1.Columns["Paymant"].HeaderText = "Платеж";
+            
+            
+
             paymantComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
         }

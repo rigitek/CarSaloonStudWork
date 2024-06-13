@@ -32,11 +32,12 @@
             clientsButton = new Button();
             salesButton = new Button();
             exitButton = new Button();
+            historySalesButton = new Button();
             SuspendLayout();
             // 
             // carsButton
             // 
-            carsButton.Location = new Point(58, 58);
+            carsButton.Location = new Point(58, 38);
             carsButton.Name = "carsButton";
             carsButton.Size = new Size(200, 40);
             carsButton.TabIndex = 0;
@@ -46,7 +47,7 @@
             // 
             // clientsButton
             // 
-            clientsButton.Location = new Point(58, 104);
+            clientsButton.Location = new Point(58, 84);
             clientsButton.Name = "clientsButton";
             clientsButton.Size = new Size(200, 40);
             clientsButton.TabIndex = 1;
@@ -56,7 +57,7 @@
             // 
             // salesButton
             // 
-            salesButton.Location = new Point(58, 150);
+            salesButton.Location = new Point(58, 130);
             salesButton.Name = "salesButton";
             salesButton.Size = new Size(200, 40);
             salesButton.TabIndex = 2;
@@ -66,7 +67,7 @@
             // 
             // exitButton
             // 
-            exitButton.Location = new Point(58, 196);
+            exitButton.Location = new Point(58, 222);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(200, 40);
             exitButton.TabIndex = 3;
@@ -74,11 +75,22 @@
             exitButton.UseVisualStyleBackColor = true;
             exitButton.Click += exitButton_Click;
             // 
+            // historySalesButton
+            // 
+            historySalesButton.Location = new Point(58, 176);
+            historySalesButton.Name = "historySalesButton";
+            historySalesButton.Size = new Size(200, 40);
+            historySalesButton.TabIndex = 4;
+            historySalesButton.Text = "История продаж";
+            historySalesButton.UseVisualStyleBackColor = true;
+            historySalesButton.Click += historySalesButton_Click;
+            // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(322, 287);
+            ClientSize = new Size(322, 296);
+            Controls.Add(historySalesButton);
             Controls.Add(exitButton);
             Controls.Add(salesButton);
             Controls.Add(clientsButton);
@@ -95,5 +107,6 @@
         private Button clientsButton;
         private Button salesButton;
         private Button exitButton;
+        private Button historySalesButton;
     }
 }

@@ -15,7 +15,7 @@ namespace CarSaloon.Forms.Cars
     public partial class AddCar : Form
     {
         CarSaloonContext db = new CarSaloonContext();
-        Car carUpdate;
+        public Car carUpdate;
         public AddCar()
         {
             InitializeComponent();

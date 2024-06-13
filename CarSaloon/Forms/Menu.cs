@@ -1,4 +1,5 @@
 using CarSaloon.Cars;
+using CarSaloon.Forms.HistorySales;
 using CarSaloon.Forms.Sales;
 using CarSaloon.Models;
 
@@ -47,6 +48,13 @@ namespace CarSaloon
         private void Menu_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void historySalesButton_Click(object sender, EventArgs e)
+        {
+            HistorySalesList historySalesList = new HistorySalesList();
+            historySalesList.Show();
+            this.Hide();
         }
     }
 }
