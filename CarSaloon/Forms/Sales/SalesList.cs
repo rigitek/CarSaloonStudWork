@@ -110,18 +110,23 @@ namespace CarSaloon.Forms.Sales
                 if (converted == false)
                     return;
 
-                Client client= db.Clients.Find(id);
+                Client client = db.Clients.Find(id);
 
                 addressLabel.Text = "Адрес: ";
                 addressLabel.Text += client.Address;
                 passportLabel.Text = "Паспорт: ";
                 passportLabel.Text += client.Passport;
                 deliveryLabel.Text = "Доставка: ";
-                if(client.Delivery) deliveryLabel.Text += "Да";
+                if (client.Delivery) deliveryLabel.Text += "Да";
                 paymantLabel.Text = "Платеж: ";
                 paymantLabel.Text += client.Paymant;
-                
+
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

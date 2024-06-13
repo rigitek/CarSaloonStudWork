@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             backButton = new Button();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // backButton
             // 
-            backButton.Location = new Point(12, 408);
+            backButton.Location = new Point(12, 282);
             backButton.Name = "backButton";
             backButton.Size = new Size(300, 30);
             backButton.TabIndex = 1;
@@ -41,19 +43,33 @@
             backButton.UseVisualStyleBackColor = true;
             backButton.Click += backButton_Click;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(12, 12);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.Size = new Size(419, 150);
+            dataGridView1.TabIndex = 2;
+            // 
             // HistorySalesList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 324);
+            Controls.Add(dataGridView1);
             Controls.Add(backButton);
             Name = "HistorySalesList";
             Text = "HistorySalesList";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Button backButton;
+        private DataGridView dataGridView1;
     }
 }

@@ -45,15 +45,16 @@
             deliveryLabel = new Label();
             addressLabel = new Label();
             passportLabel = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)clientsDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carsDataGridView).BeginInit();
             SuspendLayout();
             // 
             // backButton
             // 
-            backButton.Location = new Point(10, 408);
+            backButton.Location = new Point(10, 314);
             backButton.Name = "backButton";
-            backButton.Size = new Size(300, 30);
+            backButton.Size = new Size(320, 30);
             backButton.TabIndex = 0;
             backButton.Text = "Назад";
             backButton.UseVisualStyleBackColor = true;
@@ -229,11 +230,22 @@
             passportLabel.TabIndex = 30;
             passportLabel.Text = "Паспорт:";
             // 
+            // button1
+            // 
+            button1.Location = new Point(10, 278);
+            button1.Name = "button1";
+            button1.Size = new Size(320, 30);
+            button1.TabIndex = 34;
+            button1.Text = "Оформить продажу";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // SalesList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(676, 450);
+            ClientSize = new Size(676, 353);
+            Controls.Add(button1);
             Controls.Add(paymantLabel);
             Controls.Add(deliveryLabel);
             Controls.Add(addressLabel);
@@ -279,5 +291,6 @@
         private Label deliveryLabel;
         private Label addressLabel;
         private Label passportLabel;
+        private Button button1;
     }
 }
