@@ -15,6 +15,8 @@ namespace CarSaloon.Forms.Sales
     public partial class SalesList : Form
     {
         CarSaloonContext db = new CarSaloonContext();
+        Car CarSale;
+        Client ClientSale;
         public SalesList()
         {
             InitializeComponent();
@@ -80,6 +82,7 @@ namespace CarSaloon.Forms.Sales
                     return;
 
                 Car car = db.Cars.Find(id);
+                CarSale = car;
 
                 bodyLabel.Text = "Кузов: ";
                 bodyLabel.Text += car.TechData.Body.Title;
@@ -111,6 +114,7 @@ namespace CarSaloon.Forms.Sales
                     return;
 
                 Client client = db.Clients.Find(id);
+                ClientSale = client;
 
                 addressLabel.Text = "Адрес: ";
                 addressLabel.Text += client.Address;
@@ -126,7 +130,23 @@ namespace CarSaloon.Forms.Sales
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (ClientSale == null) MessageBox.Show("Не выбран клиент", "Ошибка", MessageBoxButtons.OK);
+            if (CarSale == null) MessageBox.Show("Не выбран автомобиль", "Ошибка", MessageBoxButtons.OK);
 
+            if (ClientSale != null && CarSale!=null)
+            {
+                Sale sale = new Sale();
+
+                sale.Car = CarSale;
+                sale.Client = ClientSale;
+                sale.Price = CarSale.Price;
+                sale.Date = DateTime.Now;
+
+                db.Sales.Add(sale);
+                db.SaveChanges();
+
+                MessageBox.Show("Продажа проведена");
+            }
         }
     }
 }

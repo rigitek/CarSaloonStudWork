@@ -78,9 +78,11 @@ namespace CarSaloon.Cars
 
                 db.Clients.Add(client);
                 db.SaveChanges();
+
+                MessageBox.Show("Новый клиент добавлен");
             }
 
-            MessageBox.Show("Новый клиент добавлен");
+            
         }
 
         private void deleteButton_Click(object sender, EventArgs e)

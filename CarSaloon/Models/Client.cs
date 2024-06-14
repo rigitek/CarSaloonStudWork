@@ -15,5 +15,12 @@ namespace CarSaloon.Models
         public string Phone { get; set; }
         public bool Delivery { get; set; }
         public string Paymant { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
+
+   
 }

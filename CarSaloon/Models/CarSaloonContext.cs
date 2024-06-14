@@ -20,6 +20,7 @@ namespace CarSaloon.Models
         public DbSet<Drive> Drives { get; set; }
         public DbSet<TechData> TechData { get; set; }
         public DbSet<Transmission> Transmissions { get; set; }
+        public DbSet<Sale> Sales { get; set; }
 
         public CarSaloonContext()
         {

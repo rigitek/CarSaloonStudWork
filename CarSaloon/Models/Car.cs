@@ -15,6 +15,11 @@ namespace CarSaloon.Models
         public  Country? Country { get; set; }
         public Brand? Brand { get; set; }
         public  TechData? TechData { get; set; }
+
+        public override string ToString()
+        {
+            return Brand.Title +" "+Model;
+        }
     }
 }
 
