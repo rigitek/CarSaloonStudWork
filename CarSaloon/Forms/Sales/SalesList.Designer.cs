@@ -52,9 +52,9 @@
             // 
             // backButton
             // 
-            backButton.Location = new Point(10, 314);
+            backButton.Location = new Point(336, 278);
             backButton.Name = "backButton";
-            backButton.Size = new Size(320, 30);
+            backButton.Size = new Size(369, 30);
             backButton.TabIndex = 0;
             backButton.Text = "Назад";
             backButton.UseVisualStyleBackColor = true;
@@ -106,7 +106,7 @@
             carsDataGridView.ReadOnly = true;
             carsDataGridView.RowHeadersWidth = 51;
             carsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            carsDataGridView.Size = new Size(328, 173);
+            carsDataGridView.Size = new Size(369, 173);
             carsDataGridView.TabIndex = 3;
             carsDataGridView.CellClick += carsDataGridView_CellClick;
             // 
@@ -114,7 +114,7 @@
             // 
             engineCapacityLabel.AutoSize = true;
             engineCapacityLabel.Font = new Font("Segoe UI", 10F);
-            engineCapacityLabel.Location = new Point(336, 332);
+            engineCapacityLabel.Location = new Point(538, 256);
             engineCapacityLabel.Name = "engineCapacityLabel";
             engineCapacityLabel.Size = new Size(122, 19);
             engineCapacityLabel.TabIndex = 29;
@@ -124,7 +124,7 @@
             // 
             horsePowerLabel.AutoSize = true;
             horsePowerLabel.Font = new Font("Segoe UI", 10F);
-            horsePowerLabel.Location = new Point(336, 313);
+            horsePowerLabel.Location = new Point(538, 237);
             horsePowerLabel.Name = "horsePowerLabel";
             horsePowerLabel.Size = new Size(80, 19);
             horsePowerLabel.TabIndex = 28;
@@ -134,7 +134,7 @@
             // 
             seatsLabel.AutoSize = true;
             seatsLabel.Font = new Font("Segoe UI", 10F);
-            seatsLabel.Location = new Point(336, 294);
+            seatsLabel.Location = new Point(538, 218);
             seatsLabel.Name = "seatsLabel";
             seatsLabel.Size = new Size(89, 19);
             seatsLabel.TabIndex = 27;
@@ -144,7 +144,7 @@
             // 
             doorsLabel.AutoSize = true;
             doorsLabel.Font = new Font("Segoe UI", 10F);
-            doorsLabel.Location = new Point(336, 275);
+            doorsLabel.Location = new Point(538, 199);
             doorsLabel.Name = "doorsLabel";
             doorsLabel.Size = new Size(105, 19);
             doorsLabel.TabIndex = 26;
@@ -244,7 +244,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(676, 353);
+            ClientSize = new Size(717, 316);
             Controls.Add(button1);
             Controls.Add(paymantLabel);
             Controls.Add(deliveryLabel);

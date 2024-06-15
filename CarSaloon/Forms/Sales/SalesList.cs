@@ -99,7 +99,7 @@ namespace CarSaloon.Forms.Sales
                 horsePowerLabel.Text = "Мощность: ";
                 horsePowerLabel.Text += car.TechData.HorsePower + " л.с.";
                 engineCapacityLabel.Text = "Объем двигателя: ";
-                engineCapacityLabel.Text += car.TechData.EngineCapacity + " литров";
+                engineCapacityLabel.Text += car.TechData.EngineCapacity + " л.";
             }
         }
 
