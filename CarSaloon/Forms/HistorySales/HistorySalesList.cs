@@ -24,10 +24,10 @@ namespace CarSaloon.Forms.HistorySales
             dataGridView1.DataSource = db.Sales.Local.ToList();
 
             dataGridView1.Columns["Id"].Visible = false;
-           
+
 
             dataGridView1.Columns["Client"].HeaderText = "Клиент";
-           // dataGridView1.Columns["Client"].ValueType = Client.Name;
+            // dataGridView1.Columns["Client"].ValueType = Client.Name;
             dataGridView1.Columns["Car"].HeaderText = "Автомобиль";
             dataGridView1.Columns["Price"].HeaderText = "Цена";
             dataGridView1.Columns["Date"].HeaderText = "Дата и время";
@@ -56,6 +56,32 @@ namespace CarSaloon.Forms.HistorySales
             db.Drives.Load();
             db.EngineTypes.Load();
             db.Sales.Load();
+        }
+
+        private void brandComboBox_Click(object sender, EventArgs e)
+        {
+            brandComboBox.DataSource = db.Brands.ToList();
+            brandComboBox.DisplayMember = "Title";
+            brandComboBox.ValueMember = "Id";
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            fromDateTimePicker.Text = null;
+            toDateTimePicker.Text = null;
+
+            brandComboBox.DataSource = null;
+            brandComboBox.Text = "Не выбрано";
+
+            clientsComboBox.DataSource = null;
+            clientsComboBox.Text = "Не выбрано";
+
+            dataGridView1.DataSource = db.Cars.Local.ToBindingList();
+        }
+
+        private void clientsComboBox_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
