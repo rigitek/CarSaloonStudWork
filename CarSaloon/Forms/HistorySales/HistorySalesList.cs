@@ -94,7 +94,7 @@ namespace CarSaloon.Forms.HistorySales
             if (clientsComboBox.DataSource == null)
             {
                 dataGridView1.DataSource = db.Sales.Local.Where(x => x.Car.Brand == brandComboBox.SelectedItem).ToList();
-               
+
                 sumSales.Text = db.Sales.Where(x => x.Car.Brand == brandComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
                 amountSales.Text = db.Sales.Where(x => x.Car.Brand == brandComboBox.SelectedItem).ToList().Count.ToString();
             }
@@ -106,12 +106,12 @@ namespace CarSaloon.Forms.HistorySales
                 amountSales.Text = db.Sales.Local.Where(x => x.Car.Brand == brandComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem).ToList().Count.ToString();
             }
 
-            
+
         }
 
         private void clientsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
 
             if (brandComboBox.DataSource == null)
             {
@@ -126,6 +126,36 @@ namespace CarSaloon.Forms.HistorySales
 
                 sumSales.Text = db.Sales.Where(x => x.Client == clientsComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
                 amountSales.Text = db.Sales.Where(x => x.Client == clientsComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem).ToList().Count.ToString();
+            }
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int index = dataGridView1.SelectedRows[0].Index;
+                int id = 0;
+                bool converted = Int32.TryParse(dataGridView1[0, index].Value.ToString(), out id);
+                if (converted == false)
+                    return;
+
+                Sale sale = db.Sales.Find(id);
+                db.Sales.Remove(sale);
+                db.SaveChanges();
+
+                MessageBox.Show("Запись о продаже удалена");
+
+                db.Sales.Load();
+                dataGridView1.DataSource = db.Sales.Local.ToList();
+
+                brandComboBox.DataSource = null;
+                brandComboBox.Text = "Не выбрано";
+
+                clientsComboBox.DataSource = null;
+                clientsComboBox.Text = "Не выбрано";
+
+                sumSales.Text = db.Sales.ToList().Sum(x => x.Price).ToString();
+                amountSales.Text = db.Sales.ToList().Count.ToString();
             }
         }
     }

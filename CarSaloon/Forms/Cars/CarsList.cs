@@ -46,16 +46,13 @@ namespace CarSaloon.Cars
         {
             Menu menu = new Menu();
             menu.Show();
-
         }
 
         private void brandComboBox_Click(object sender, EventArgs e)
         {
-
             brandComboBox.DataSource = db.Brands.ToList();
             brandComboBox.DisplayMember = "Title";
             brandComboBox.ValueMember = "Id";
-
         }
 
         private void countryComboBox_Click(object sender, EventArgs e)

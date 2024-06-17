@@ -55,7 +55,6 @@ namespace CarSaloon.Forms.Sales
         {
             Menu menu = new Menu();
             menu.Show();
-
         }
 
         private void DBRefresh()

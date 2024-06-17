@@ -41,6 +41,7 @@
             clearButton = new Button();
             amountSales = new Label();
             sumSales = new Label();
+            deleteButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -64,6 +65,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(481, 213);
             dataGridView1.TabIndex = 2;
             // 
@@ -177,11 +179,22 @@
             sumSales.Size = new Size(0, 19);
             sumSales.TabIndex = 19;
             // 
+            // deleteButton
+            // 
+            deleteButton.Location = new Point(499, 148);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(272, 30);
+            deleteButton.TabIndex = 20;
+            deleteButton.Text = "Удалить";
+            deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
+            // 
             // HistorySalesList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 262);
+            Controls.Add(deleteButton);
             Controls.Add(sumSales);
             Controls.Add(amountSales);
             Controls.Add(clearButton);
@@ -218,5 +231,6 @@
         private Button clearButton;
         private Label amountSales;
         private Label sumSales;
+        private Button deleteButton;
     }
 }
