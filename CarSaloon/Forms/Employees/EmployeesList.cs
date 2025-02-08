@@ -6,29 +6,26 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CarSaloon.Cars
+namespace CarSaloon.Forms.Employees
 {
-    public partial class ClientsList : Form
+    public partial class EmployeesList : Form
     {
         CarSaloonContext db = new CarSaloonContext();
-        public ClientsList()
+        public EmployeesList()
         {
             InitializeComponent();
 
-            db.Clients.Load();
-            dataGridView1.DataSource = db.Clients.Local.ToBindingList();
+            db.Employees.Load();
+            dataGridView1.DataSource = db.Employees.Local.ToBindingList();
 
             dataGridView1.Columns["Id"].Visible = false;
 
             dataGridView1.Columns["Name"].HeaderText = "ФИО";
-            dataGridView1.Columns["Phone"].HeaderText = "Номер телефона";
-            dataGridView1.Columns["Passport"].HeaderText = "Паспорт";
-            dataGridView1.Columns["Address"].HeaderText = "Адрес";
+            dataGridView1.Columns["Post"].HeaderText = "Должность";
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -36,7 +33,7 @@ namespace CarSaloon.Cars
             this.Close();
         }
 
-        private void ClientsList_FormClosing(object sender, FormClosingEventArgs e)
+        private void EmployeesList_FormClosing(object sender, FormClosingEventArgs e)
         {
 
             Menu menu = new Menu();
@@ -47,31 +44,23 @@ namespace CarSaloon.Cars
         private void addButton_Click(object sender, EventArgs e)
         {
             if (nameTextBox.Text.Length == 0) MessageBox.Show("Не заполнено ФИО", "Ошибка добавления", MessageBoxButtons.OK);
-            if (passportTextBox.Text.Length == 0) MessageBox.Show("Не заполнен паспорт", "Ошибка добавления", MessageBoxButtons.OK);
-            if (phoneTextBox.Text.Length == 0) MessageBox.Show("Не заполнен телефон", "Ошибка добавления", MessageBoxButtons.OK);        
-            if (adressTextBox.Text.Length == 0) MessageBox.Show("Не заполнен адрес", "Ошибка добавления", MessageBoxButtons.OK);
+            if (postTextBox.Text.Length == 0) MessageBox.Show("Не указана должность", "Ошибка добавления", MessageBoxButtons.OK);
+           
 
             if (nameTextBox.Text.Length > 0 &&
-                passportTextBox.Text.Length > 0 &&
-                phoneTextBox.Text.Length > 0 &&
-                adressTextBox.Text.Length > 0)
+                postTextBox.Text.Length > 0)
             {
-
-                Client client = new Client
+                Employee employee = new Employee
                 {
                     Name = nameTextBox.Text,
-                    Passport = passportTextBox.Text,
-                    Address = adressTextBox.Text,
-                    Phone = phoneTextBox.Text,
+                    Post = postTextBox.Text,
                 };
 
-                db.Clients.Add(client);
+                db.Employees.Add(employee);
                 db.SaveChanges();
 
-                MessageBox.Show("Новый клиент добавлен");
+                MessageBox.Show("Новый сотрудник добавлен");
             }
-
-            
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -84,11 +73,11 @@ namespace CarSaloon.Cars
                 if (converted == false)
                     return;
 
-                Client client = db.Clients.Find(id);
-                db.Clients.Remove(client);
+                Employee employee= db.Employees.Find(id);
+                db.Employees.Remove(employee);
                 db.SaveChanges();
 
-                MessageBox.Show("Клиент удален");
+                MessageBox.Show("Сотрудник удален");
             }
         }
 
@@ -102,12 +91,10 @@ namespace CarSaloon.Cars
                 if (converted == false)
                     return;
 
-                Client client = db.Clients.Find(id);
+                Employee employee = db.Employees.Find(id);
 
-                nameTextBox.Text = client.Name;
-                passportTextBox.Text = client.Passport;
-                adressTextBox.Text = client.Address;
-                phoneTextBox.Text = client.Phone;
+                nameTextBox.Text = employee.Name;
+                postTextBox.Text = employee.Post;
 
                 deleteButton.Enabled = true;
                 editButton.Enabled = true;
@@ -119,9 +106,7 @@ namespace CarSaloon.Cars
             dataGridView1.ClearSelection();
 
             nameTextBox.Clear();
-            passportTextBox.Clear();
-            adressTextBox.Clear();
-            phoneTextBox.Clear();
+            postTextBox.Clear();
 
             deleteButton.Enabled = false;
             editButton.Enabled = false;
@@ -137,17 +122,15 @@ namespace CarSaloon.Cars
                 if (converted == false)
                     return;
 
-                Client client = db.Clients.Find(id);
+                Employee employee= db.Employees.Find(id);
 
-                client.Name = nameTextBox.Text;
-                client.Passport = passportTextBox.Text;
-                client.Address = adressTextBox.Text;
-                client.Phone = phoneTextBox.Text;
+                employee.Name = nameTextBox.Text;
+                employee.Post = postTextBox.Text;
 
                 db.SaveChanges();
                 dataGridView1.Refresh();
 
-                MessageBox.Show("Данные клиента обновлены");
+                MessageBox.Show("Данные сотрудника обновлены");
 
             }
         }

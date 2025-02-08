@@ -1,4 +1,5 @@
 using CarSaloon.Cars;
+using CarSaloon.Forms.Employees;
 using CarSaloon.Forms.HistorySales;
 using CarSaloon.Forms.Sales;
 using CarSaloon.Models;
@@ -54,6 +55,13 @@ namespace CarSaloon
         {
             HistorySalesList historySalesList = new HistorySalesList();
             historySalesList.Show();
+            this.Hide();
+        }
+
+        private void employeesButton_Click(object sender, EventArgs e)
+        {
+            EmployeesList employeesList = new EmployeesList();
+            employeesList.Show();
             this.Hide();
         }
     }

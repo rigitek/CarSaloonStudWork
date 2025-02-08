@@ -39,11 +39,14 @@ namespace CarSaloon.Forms.Sales
             clientsDataGridView.Columns["Id"].Visible = false;
             clientsDataGridView.Columns["Passport"].Visible = false;
             clientsDataGridView.Columns["Address"].Visible = false;
-            clientsDataGridView.Columns["Delivery"].Visible = false;
-            clientsDataGridView.Columns["Paymant"].Visible = false;
 
-            clientsDataGridView.Columns["Phone"].HeaderText = "Номер телефона";
+            
             clientsDataGridView.Columns["Name"].HeaderText = "ФИО";
+            clientsDataGridView.Columns["Phone"].HeaderText = "Номер телефона";
+
+            employeeComboBox.DataSource = db.Employees.ToArray();
+            employeeComboBox.DisplayMember = "Name";
+            employeeComboBox.ValueMember = "Id";
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -68,6 +71,7 @@ namespace CarSaloon.Forms.Sales
             db.Bodies.Load();
             db.Drives.Load();
             db.EngineTypes.Load();
+            db.Employees.Load();
         }
 
         private void carsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -115,14 +119,14 @@ namespace CarSaloon.Forms.Sales
                 Client client = db.Clients.Find(id);
                 ClientSale = client;
 
+                nameLabel.Text = "ФИО: ";
+                nameLabel.Text += client.Name;
+                phoneLabel.Text = "Телефон: ";
+                phoneLabel.Text += client.Phone;
                 addressLabel.Text = "Адрес: ";
                 addressLabel.Text += client.Address;
                 passportLabel.Text = "Паспорт: ";
                 passportLabel.Text += client.Passport;
-                deliveryLabel.Text = "Доставка: ";
-                if (client.Delivery) deliveryLabel.Text += "Да";
-                paymantLabel.Text = "Платеж: ";
-                paymantLabel.Text += client.Paymant;
 
             }
         }
@@ -131,8 +135,9 @@ namespace CarSaloon.Forms.Sales
         {
             if (ClientSale == null) MessageBox.Show("Не выбран клиент", "Ошибка", MessageBoxButtons.OK);
             if (CarSale == null) MessageBox.Show("Не выбран автомобиль", "Ошибка", MessageBoxButtons.OK);
+            if (employeeComboBox == null) MessageBox.Show("Не выбран ответственный", "Ошибка", MessageBoxButtons.OK);
 
-            if (ClientSale != null && CarSale!=null)
+            if (ClientSale != null && CarSale!=null && employeeComboBox!=null)
             {
                 Sale sale = new Sale();
 
@@ -140,6 +145,8 @@ namespace CarSaloon.Forms.Sales
                 sale.Client = ClientSale;
                 sale.Price = CarSale.Price;
                 sale.Date = DateTime.Now;
+                sale.Payment = paymentComboBox.Text;
+                sale.Employee= employeeComboBox.SelectedItem as Employee;
 
                 db.Sales.Add(sale);
                 db.SaveChanges();

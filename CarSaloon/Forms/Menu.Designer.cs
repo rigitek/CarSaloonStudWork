@@ -33,11 +33,12 @@
             salesButton = new Button();
             exitButton = new Button();
             historySalesButton = new Button();
+            employeesButton = new Button();
             SuspendLayout();
             // 
             // carsButton
             // 
-            carsButton.Location = new Point(58, 38);
+            carsButton.Location = new Point(58, 78);
             carsButton.Name = "carsButton";
             carsButton.Size = new Size(200, 40);
             carsButton.TabIndex = 0;
@@ -47,7 +48,7 @@
             // 
             // clientsButton
             // 
-            clientsButton.Location = new Point(58, 84);
+            clientsButton.Location = new Point(58, 124);
             clientsButton.Name = "clientsButton";
             clientsButton.Size = new Size(200, 40);
             clientsButton.TabIndex = 1;
@@ -57,7 +58,7 @@
             // 
             // salesButton
             // 
-            salesButton.Location = new Point(58, 130);
+            salesButton.Location = new Point(58, 170);
             salesButton.Name = "salesButton";
             salesButton.Size = new Size(200, 40);
             salesButton.TabIndex = 2;
@@ -67,7 +68,7 @@
             // 
             // exitButton
             // 
-            exitButton.Location = new Point(58, 222);
+            exitButton.Location = new Point(58, 262);
             exitButton.Name = "exitButton";
             exitButton.Size = new Size(200, 40);
             exitButton.TabIndex = 3;
@@ -77,7 +78,7 @@
             // 
             // historySalesButton
             // 
-            historySalesButton.Location = new Point(58, 176);
+            historySalesButton.Location = new Point(58, 216);
             historySalesButton.Name = "historySalesButton";
             historySalesButton.Size = new Size(200, 40);
             historySalesButton.TabIndex = 4;
@@ -85,11 +86,22 @@
             historySalesButton.UseVisualStyleBackColor = true;
             historySalesButton.Click += historySalesButton_Click;
             // 
+            // employeesButton
+            // 
+            employeesButton.Location = new Point(58, 32);
+            employeesButton.Name = "employeesButton";
+            employeesButton.Size = new Size(200, 40);
+            employeesButton.TabIndex = 5;
+            employeesButton.Text = "Сотрудники";
+            employeesButton.UseVisualStyleBackColor = true;
+            employeesButton.Click += employeesButton_Click;
+            // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(322, 296);
+            ClientSize = new Size(322, 336);
+            Controls.Add(employeesButton);
             Controls.Add(historySalesButton);
             Controls.Add(exitButton);
             Controls.Add(salesButton);
@@ -108,5 +120,6 @@
         private Button salesButton;
         private Button exitButton;
         private Button historySalesButton;
+        private Button employeesButton;
     }
 }

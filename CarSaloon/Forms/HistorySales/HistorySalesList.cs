@@ -30,6 +30,8 @@ namespace CarSaloon.Forms.HistorySales
             dataGridView1.Columns["Car"].HeaderText = "Автомобиль";
             dataGridView1.Columns["Price"].HeaderText = "Цена";
             dataGridView1.Columns["Date"].HeaderText = "Дата и время";
+            dataGridView1.Columns["Payment"].HeaderText = "Платеж";
+            dataGridView1.Columns["Employee"].HeaderText = "Сотрудник";
 
             sumSales.Text = db.Sales.ToList().Sum(x => x.Price).ToString();
             amountSales.Text = db.Sales.ToList().Count.ToString();
@@ -58,6 +60,7 @@ namespace CarSaloon.Forms.HistorySales
             db.Drives.Load();
             db.EngineTypes.Load();
             db.Sales.Load();
+            db.Employees.Load();
         }
 
         private void brandComboBox_Click(object sender, EventArgs e)
@@ -76,12 +79,14 @@ namespace CarSaloon.Forms.HistorySales
 
         private void clearButton_Click(object sender, EventArgs e)
         {
-
             brandComboBox.DataSource = null;
             brandComboBox.Text = "Не выбрано";
 
             clientsComboBox.DataSource = null;
             clientsComboBox.Text = "Не выбрано";
+
+            employeeComboBox.DataSource = null;
+            employeeComboBox.Text = "Не выбрано";
 
             dataGridView1.DataSource = db.Sales.Local.ToBindingList();
 
@@ -91,41 +96,65 @@ namespace CarSaloon.Forms.HistorySales
 
         private void brandComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (clientsComboBox.DataSource == null)
+            if (clientsComboBox.DataSource == null && employeeComboBox.DataSource == null)
             {
                 dataGridView1.DataSource = db.Sales.Local.Where(x => x.Car.Brand == brandComboBox.SelectedItem).ToList();
 
                 sumSales.Text = db.Sales.Where(x => x.Car.Brand == brandComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
                 amountSales.Text = db.Sales.Where(x => x.Car.Brand == brandComboBox.SelectedItem).ToList().Count.ToString();
             }
-            else
+            else if (clientsComboBox.DataSource != null && employeeComboBox.DataSource == null)
             {
                 dataGridView1.DataSource = db.Sales.Local.Where(x => x.Car.Brand == brandComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem).ToList();
 
                 sumSales.Text = db.Sales.Local.Where(x => x.Car.Brand == brandComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
                 amountSales.Text = db.Sales.Local.Where(x => x.Car.Brand == brandComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem).ToList().Count.ToString();
             }
+            else if (clientsComboBox.DataSource == null && employeeComboBox.DataSource != null)
+            {
+                dataGridView1.DataSource = db.Sales.Local.Where(x => x.Car.Brand == brandComboBox.SelectedItem && x.Employee == employeeComboBox.SelectedItem).ToList();
 
+                sumSales.Text = db.Sales.Local.Where(x => x.Car.Brand == brandComboBox.SelectedItem && x.Employee == employeeComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
+                amountSales.Text = db.Sales.Local.Where(x => x.Car.Brand == brandComboBox.SelectedItem && x.Employee == employeeComboBox.SelectedItem).ToList().Count.ToString();
+            }
+            else
+            {
+                dataGridView1.DataSource = db.Sales.Local.Where(x => x.Car.Brand == brandComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem && x.Employee == employeeComboBox.SelectedItem).ToList();
 
+                sumSales.Text = db.Sales.Local.Where(x => x.Car.Brand == brandComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem && x.Employee == employeeComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
+                amountSales.Text = db.Sales.Local.Where(x => x.Car.Brand == brandComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem && x.Employee == employeeComboBox.SelectedItem).ToList().Count.ToString();
+            }
         }
 
         private void clientsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
-            if (brandComboBox.DataSource == null)
+            if (brandComboBox.DataSource == null && employeeComboBox.DataSource == null)
             {
                 dataGridView1.DataSource = db.Sales.Local.Where(x => x.Client == clientsComboBox.SelectedItem).ToList();
 
                 sumSales.Text = db.Sales.Where(x => x.Client == clientsComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
                 amountSales.Text = db.Sales.Where(x => x.Client == clientsComboBox.SelectedItem).ToList().Count.ToString();
             }
-            else
+            else if (brandComboBox.DataSource != null && employeeComboBox.DataSource == null)
             {
                 dataGridView1.DataSource = db.Sales.Local.Where(x => x.Client == clientsComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem).ToList();
 
-                sumSales.Text = db.Sales.Where(x => x.Client == clientsComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
-                amountSales.Text = db.Sales.Where(x => x.Client == clientsComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem).ToList().Count.ToString();
+                sumSales.Text = db.Sales.Local.Where(x => x.Client == clientsComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
+                amountSales.Text = db.Sales.Local.Where(x => x.Client == clientsComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem).ToList().Count.ToString();
+            }
+            else if (brandComboBox.DataSource == null && employeeComboBox.DataSource != null)
+            {
+                dataGridView1.DataSource = db.Sales.Local.Where(x => x.Client == clientsComboBox.SelectedItem && x.Employee == employeeComboBox.SelectedItem).ToList();
+
+                sumSales.Text = db.Sales.Local.Where(x => x.Client == clientsComboBox.SelectedItem && x.Employee == employeeComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
+                amountSales.Text = db.Sales.Local.Where(x => x.Client == clientsComboBox.SelectedItem && x.Employee == employeeComboBox.SelectedItem).ToList().Count.ToString();
+            }
+            else
+            {
+                dataGridView1.DataSource = db.Sales.Local.Where(x => x.Client == clientsComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem && x.Employee == employeeComboBox.SelectedItem).ToList();
+
+                sumSales.Text = db.Sales.Where(x => x.Client == clientsComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem && x.Employee == employeeComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
+                amountSales.Text = db.Sales.Where(x => x.Client == clientsComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem && x.Employee == employeeComboBox.SelectedItem).ToList().Count.ToString();
             }
         }
 
@@ -157,6 +186,45 @@ namespace CarSaloon.Forms.HistorySales
                 sumSales.Text = db.Sales.ToList().Sum(x => x.Price).ToString();
                 amountSales.Text = db.Sales.ToList().Count.ToString();
             }
+        }
+
+        private void employeeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (brandComboBox.DataSource == null && clientsComboBox.DataSource == null)
+            {
+                dataGridView1.DataSource = db.Sales.Local.Where(x => x.Employee == employeeComboBox.SelectedItem).ToList();
+
+                sumSales.Text = db.Sales.Where(x => x.Employee == employeeComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
+                amountSales.Text = db.Sales.Where(x => x.Employee == employeeComboBox.SelectedItem).ToList().Count.ToString();
+            }
+            else if (brandComboBox.DataSource != null && clientsComboBox.DataSource == null)
+            {
+                dataGridView1.DataSource = db.Sales.Local.Where(x => x.Employee == employeeComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem).ToList();
+
+                sumSales.Text = db.Sales.Local.Where(x => x.Employee == employeeComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
+                amountSales.Text = db.Sales.Local.Where(x => x.Employee == employeeComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem).ToList().Count.ToString();
+            }
+            else if (brandComboBox.DataSource == null && clientsComboBox.DataSource != null)
+            {
+                dataGridView1.DataSource = db.Sales.Local.Where(x => x.Employee == employeeComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem).ToList();
+
+                sumSales.Text = db.Sales.Local.Where(x => x.Employee == employeeComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
+                amountSales.Text = db.Sales.Local.Where(x => x.Employee == employeeComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem).ToList().Count.ToString();
+            }
+            else
+            {
+                dataGridView1.DataSource = db.Sales.Local.Where(x => x.Employee == employeeComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem).ToList();
+
+                sumSales.Text = db.Sales.Where(x => x.Employee == employeeComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem).ToList().Sum(x => x.Price).ToString();
+                amountSales.Text = db.Sales.Where(x => x.Employee == employeeComboBox.SelectedItem && x.Car.Brand == brandComboBox.SelectedItem && x.Client == clientsComboBox.SelectedItem).ToList().Count.ToString();
+            }
+        }
+
+        private void employeeComboBox_Click(object sender, EventArgs e)
+        {
+            employeeComboBox.DataSource = db.Employees.ToList();
+            employeeComboBox.DisplayMember = "Name";
+            employeeComboBox.ValueMember = "Id";
         }
     }
 }

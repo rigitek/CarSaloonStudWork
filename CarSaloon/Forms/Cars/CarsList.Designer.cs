@@ -64,7 +64,7 @@
             // countryComboBox
             // 
             countryComboBox.FormattingEnabled = true;
-            countryComboBox.Location = new Point(67, 37);
+            countryComboBox.Location = new Point(67, 38);
             countryComboBox.Name = "countryComboBox";
             countryComboBox.Size = new Size(100, 23);
             countryComboBox.TabIndex = 2;
@@ -84,7 +84,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(173, 40);
+            label2.Location = new Point(173, 41);
             label2.Name = "label2";
             label2.Size = new Size(95, 15);
             label2.TabIndex = 5;
@@ -93,7 +93,7 @@
             // brandComboBox
             // 
             brandComboBox.FormattingEnabled = true;
-            brandComboBox.Location = new Point(284, 37);
+            brandComboBox.Location = new Point(274, 38);
             brandComboBox.Name = "brandComboBox";
             brandComboBox.Size = new Size(100, 23);
             brandComboBox.TabIndex = 4;
@@ -104,9 +104,9 @@
             // cleanBrandButton
             // 
             cleanBrandButton.Font = new Font("Segoe UI", 8F);
-            cleanBrandButton.Location = new Point(389, 37);
+            cleanBrandButton.Location = new Point(380, 37);
             cleanBrandButton.Name = "cleanBrandButton";
-            cleanBrandButton.Size = new Size(172, 23);
+            cleanBrandButton.Size = new Size(181, 23);
             cleanBrandButton.TabIndex = 7;
             cleanBrandButton.Text = "Сброс";
             cleanBrandButton.UseVisualStyleBackColor = true;
@@ -283,7 +283,7 @@
             Controls.Add(countryComboBox);
             Controls.Add(backButton);
             Name = "CarsList";
-            Text = "CarsList";
+            Text = "Список автомобилей";
             FormClosing += CarsList_FormClosing;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

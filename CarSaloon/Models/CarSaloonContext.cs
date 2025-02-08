@@ -17,6 +17,7 @@ namespace CarSaloon.Models
         public DbSet<Client> Clients { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<EngineType> EngineTypes { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         public DbSet<Drive> Drives { get; set; }
         public DbSet<TechData> TechData { get; set; }
         public DbSet<Transmission> Transmissions { get; set; }

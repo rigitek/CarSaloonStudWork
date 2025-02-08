@@ -86,7 +86,7 @@ namespace CarSaloon.Cars
                 Car car = db.Cars.Find(id);
 
                 bodyLabel.Text = "Кузов: ";
-                bodyLabel.Text += car.TechData.Body.Title;
+                bodyLabel.Text += car.TechData.Body;
                 driveLabel.Text = "Привод: ";
                 driveLabel.Text += car.TechData.Drive.Title;
                 engineTypeLabel.Text = "Двигатель: ";
@@ -131,6 +131,15 @@ namespace CarSaloon.Cars
 
                 db.Cars.Load();
                 dataGridView1.DataSource = db.Cars.Local.ToBindingList();
+
+                bodyLabel.Text = "Кузов: ";
+                driveLabel.Text = "Привод: ";
+                engineTypeLabel.Text = "Двигатель: ";
+                transmissionLabel.Text = "Трансмиссия: ";
+                doorsLabel.Text = "Кол-во дверей: ";
+                seatsLabel.Text = "Кол-во мест: ";
+                horsePowerLabel.Text = "Мощность: ";
+                engineCapacityLabel.Text = "Объем двигателя: ";
             }
         }
 

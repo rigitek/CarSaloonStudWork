@@ -353,7 +353,7 @@
             Controls.Add(groupBox1);
             Controls.Add(groupBox2);
             Name = "AddCar";
-            Text = "AddCar";
+            Text = "Добавление автомобиля";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
