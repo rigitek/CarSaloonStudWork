@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CarSaloon.Models
 {
-    public class Employee
+    public class Post
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public Post? Post { get; set; }
+        public string Title { get; set; }
 
         public override string ToString()
         {
-            return Name+" "+Post;
+            return Title;
         }
     }
 }
