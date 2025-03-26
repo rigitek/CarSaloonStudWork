@@ -1,4 +1,5 @@
 using CarSaloon.Cars;
+using CarSaloon.Forms;
 using CarSaloon.Forms.Employees;
 using CarSaloon.Forms.HistorySales;
 using CarSaloon.Forms.Sales;
@@ -12,6 +13,8 @@ namespace CarSaloon
         public Menu()
         {
             InitializeComponent();
+
+            
         }
 
         public void carsButton_Click(object sender, EventArgs e)
@@ -44,6 +47,7 @@ namespace CarSaloon
         private void Menu_Load(object sender, EventArgs e)
         {
             db.Database.EnsureCreated();
+
         }
 
         private void Menu_FormClosed(object sender, FormClosedEventArgs e)

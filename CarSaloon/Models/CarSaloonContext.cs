@@ -97,6 +97,10 @@ namespace CarSaloon.Models
                     new Country { Id = 5, Title = "Франция" },
                     new Country { Id = 6, Title = "Чехия" }
             );
+
+            modelBuilder.Entity<Employee>().HasData(
+                    new Employee { Id = 1, Name = "Админ",Login="1",Password="1",Post="Администратор" }
+            );
         }
     }
 }

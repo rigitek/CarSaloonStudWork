@@ -15,6 +15,7 @@ namespace CarSaloon.Forms.Employees
     public partial class EmployeesList : Form
     {
         CarSaloonContext db = new CarSaloonContext();
+        public Employee Employee { get; set; }
         public EmployeesList()
         {
             InitializeComponent();
@@ -26,6 +27,8 @@ namespace CarSaloon.Forms.Employees
 
             dataGridView1.Columns["Name"].HeaderText = "ФИО";
             dataGridView1.Columns["Post"].HeaderText = "Должность";
+            dataGridView1.Columns["Login"].HeaderText = "Логин";
+            dataGridView1.Columns["Password"].HeaderText = "Пароль";
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -44,16 +47,21 @@ namespace CarSaloon.Forms.Employees
         private void addButton_Click(object sender, EventArgs e)
         {
             if (nameTextBox.Text.Length == 0) MessageBox.Show("Не заполнено ФИО", "Ошибка добавления", MessageBoxButtons.OK);
-            if (postTextBox.Text.Length == 0) MessageBox.Show("Не указана должность", "Ошибка добавления", MessageBoxButtons.OK);
-           
+            if (postComboBox.Text.Length == 0) MessageBox.Show("Не указана должность", "Ошибка добавления", MessageBoxButtons.OK);
+            if (loginTextBox.Text.Length == 0) MessageBox.Show("Не заполнен логин", "Ошибка добавления", MessageBoxButtons.OK); 
+            if (passwordTextBox.Text.Length == 0) MessageBox.Show("Не заполнен пароль", "Ошибка добавления", MessageBoxButtons.OK);
 
             if (nameTextBox.Text.Length > 0 &&
-                postTextBox.Text.Length > 0)
+                postComboBox.Text.Length > 0 &&
+                loginTextBox.Text.Length > 0 &&
+                passwordTextBox.Text.Length > 0)
             {
                 Employee employee = new Employee
                 {
                     Name = nameTextBox.Text,
-                    Post = postTextBox.Text,
+                    Post = postComboBox.Text,
+                    Login=loginTextBox.Text,
+                    Password=passwordTextBox.Text
                 };
 
                 db.Employees.Add(employee);
@@ -94,7 +102,9 @@ namespace CarSaloon.Forms.Employees
                 Employee employee = db.Employees.Find(id);
 
                 nameTextBox.Text = employee.Name;
-                postTextBox.Text = employee.Post;
+                postComboBox.Text = employee.Post;
+                loginTextBox.Text = employee.Login;
+                passwordTextBox.Text = employee.Password;
 
                 deleteButton.Enabled = true;
                 editButton.Enabled = true;
@@ -106,7 +116,9 @@ namespace CarSaloon.Forms.Employees
             dataGridView1.ClearSelection();
 
             nameTextBox.Clear();
-            postTextBox.Clear();
+            postComboBox.Text="Выбрать";
+            loginTextBox.Clear();
+            passwordTextBox.Clear();
 
             deleteButton.Enabled = false;
             editButton.Enabled = false;
@@ -125,7 +137,9 @@ namespace CarSaloon.Forms.Employees
                 Employee employee= db.Employees.Find(id);
 
                 employee.Name = nameTextBox.Text;
-                employee.Post = postTextBox.Text;
+                employee.Post = postComboBox.Text;
+                employee.Login = loginTextBox.Text;
+                employee.Password = passwordTextBox.Text;
 
                 db.SaveChanges();
                 dataGridView1.Refresh();

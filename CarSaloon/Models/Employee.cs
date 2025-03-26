@@ -10,7 +10,9 @@ namespace CarSaloon.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Post? Post { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string Post { get; set; }
 
         public override string ToString()
         {
