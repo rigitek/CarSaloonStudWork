@@ -72,7 +72,8 @@ namespace CarSaloon.Forms.Sales
             db.Drives.Load();
             db.EngineTypes.Load();
             db.Employees.Load();
-        }
+            db.Steerings.Load();
+                }
 
         private void carsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -103,6 +104,38 @@ namespace CarSaloon.Forms.Sales
                 horsePowerLabel.Text += car.TechData.HorsePower + " л.с.";
                 engineCapacityLabel.Text = "Объем двигателя: ";
                 engineCapacityLabel.Text += car.TechData.EngineCapacity + " л.";
+                steeringLabel.Text = "Руль: ";
+                steeringLabel.Text += car.TechData.Steering;
+                if (car.TechData.ABS == true)
+                {
+                    ABSLabel.Text = "ABS: ";
+                    ABSLabel.Text += "Есть";
+                }
+                else
+                {
+                    ABSLabel.Text = "ABS: ";
+                    ABSLabel.Text += "Нет";
+                }
+                if (car.TechData.AC == true)
+                {
+                    ACLabel.Text = "Кондиционер: ";
+                    ACLabel.Text += "Есть";
+                }
+                else
+                {
+                    ACLabel.Text = "Кондиционер: ";
+                    ACLabel.Text += "Нет";
+                }
+                if (car.TechData.Multimedia == true)
+                {
+                    multimediaLabel.Text = "Мультимедиа: ";
+                    multimediaLabel.Text += "Есть";
+                }
+                else
+                {
+                    multimediaLabel.Text = "Мультимедиа: ";
+                    multimediaLabel.Text += "Нет";
+                }
             }
         }
 

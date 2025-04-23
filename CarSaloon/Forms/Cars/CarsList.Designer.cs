@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             backButton = new Button();
-            countryComboBox = new ComboBox();
-            label1 = new Label();
-            label2 = new Label();
-            brandComboBox = new ComboBox();
             cleanBrandButton = new Button();
             dataGridView1 = new DataGridView();
             addButton = new Button();
@@ -48,67 +44,32 @@
             horsePowerLabel = new Label();
             engineCapacityLabel = new Label();
             label4 = new Label();
+            filterButton = new Button();
+            steeringLabel = new Label();
+            ABSLabel = new Label();
+            ACLabel = new Label();
+            multimediaLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // backButton
             // 
-            backButton.Location = new Point(567, 300);
+            backButton.Location = new Point(618, 337);
             backButton.Name = "backButton";
-            backButton.Size = new Size(205, 30);
+            backButton.Size = new Size(185, 30);
             backButton.TabIndex = 0;
             backButton.Text = "Назад";
             backButton.UseVisualStyleBackColor = true;
             backButton.Click += backButton_Click;
             // 
-            // countryComboBox
-            // 
-            countryComboBox.FormattingEnabled = true;
-            countryComboBox.Location = new Point(67, 38);
-            countryComboBox.Name = "countryComboBox";
-            countryComboBox.Size = new Size(100, 23);
-            countryComboBox.TabIndex = 2;
-            countryComboBox.Text = "Не выбрано";
-            countryComboBox.SelectedIndexChanged += countryComboBox_SelectedIndexChanged;
-            countryComboBox.Click += countryComboBox_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 40);
-            label1.Name = "label1";
-            label1.Size = new Size(49, 15);
-            label1.TabIndex = 3;
-            label1.Text = "Страна:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(173, 41);
-            label2.Name = "label2";
-            label2.Size = new Size(95, 15);
-            label2.TabIndex = 5;
-            label2.Text = "Производитель:";
-            // 
-            // brandComboBox
-            // 
-            brandComboBox.FormattingEnabled = true;
-            brandComboBox.Location = new Point(274, 38);
-            brandComboBox.Name = "brandComboBox";
-            brandComboBox.Size = new Size(100, 23);
-            brandComboBox.TabIndex = 4;
-            brandComboBox.Text = "Не выбрано";
-            brandComboBox.SelectedIndexChanged += brandComboBox_SelectedIndexChanged;
-            brandComboBox.Click += brandComboBox_Click;
-            // 
             // cleanBrandButton
             // 
             cleanBrandButton.Font = new Font("Segoe UI", 8F);
-            cleanBrandButton.Location = new Point(380, 37);
+            cleanBrandButton.Location = new Point(618, 301);
             cleanBrandButton.Name = "cleanBrandButton";
-            cleanBrandButton.Size = new Size(181, 23);
+            cleanBrandButton.Size = new Size(185, 30);
             cleanBrandButton.TabIndex = 7;
-            cleanBrandButton.Text = "Сброс";
+            cleanBrandButton.Text = "Сброс фильтра";
             cleanBrandButton.UseVisualStyleBackColor = true;
             cleanBrandButton.Click += cleanBrandButton_Click;
             // 
@@ -118,20 +79,20 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 66);
+            dataGridView1.Location = new Point(12, 37);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(550, 264);
+            dataGridView1.Size = new Size(600, 294);
             dataGridView1.TabIndex = 9;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // addButton
             // 
-            addButton.Location = new Point(566, 192);
+            addButton.Location = new Point(12, 337);
             addButton.Name = "addButton";
-            addButton.Size = new Size(206, 30);
+            addButton.Size = new Size(196, 30);
             addButton.TabIndex = 10;
             addButton.Text = "Добавить";
             addButton.UseVisualStyleBackColor = true;
@@ -139,9 +100,9 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(566, 228);
+            editButton.Location = new Point(214, 337);
             editButton.Name = "editButton";
-            editButton.Size = new Size(206, 30);
+            editButton.Size = new Size(196, 30);
             editButton.TabIndex = 11;
             editButton.Text = "Изменить";
             editButton.UseVisualStyleBackColor = true;
@@ -149,9 +110,9 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(566, 264);
+            deleteButton.Location = new Point(416, 337);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(206, 30);
+            deleteButton.Size = new Size(196, 30);
             deleteButton.TabIndex = 12;
             deleteButton.Text = "Удалить";
             deleteButton.UseVisualStyleBackColor = true;
@@ -161,7 +122,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 14F);
-            label3.Location = new Point(566, 9);
+            label3.Location = new Point(618, 9);
             label3.Name = "label3";
             label3.Size = new Size(193, 25);
             label3.TabIndex = 13;
@@ -171,7 +132,7 @@
             // 
             bodyLabel.AutoSize = true;
             bodyLabel.Font = new Font("Segoe UI", 10F);
-            bodyLabel.Location = new Point(566, 37);
+            bodyLabel.Location = new Point(618, 34);
             bodyLabel.Name = "bodyLabel";
             bodyLabel.Size = new Size(48, 19);
             bodyLabel.TabIndex = 14;
@@ -181,7 +142,7 @@
             // 
             driveLabel.AutoSize = true;
             driveLabel.Font = new Font("Segoe UI", 10F);
-            driveLabel.Location = new Point(566, 56);
+            driveLabel.Location = new Point(618, 53);
             driveLabel.Name = "driveLabel";
             driveLabel.Size = new Size(61, 19);
             driveLabel.TabIndex = 15;
@@ -191,7 +152,7 @@
             // 
             engineTypeLabel.AutoSize = true;
             engineTypeLabel.Font = new Font("Segoe UI", 10F);
-            engineTypeLabel.Location = new Point(566, 75);
+            engineTypeLabel.Location = new Point(618, 72);
             engineTypeLabel.Name = "engineTypeLabel";
             engineTypeLabel.Size = new Size(101, 19);
             engineTypeLabel.TabIndex = 16;
@@ -201,7 +162,7 @@
             // 
             transmissionLabel.AutoSize = true;
             transmissionLabel.Font = new Font("Segoe UI", 10F);
-            transmissionLabel.Location = new Point(566, 94);
+            transmissionLabel.Location = new Point(618, 91);
             transmissionLabel.Name = "transmissionLabel";
             transmissionLabel.Size = new Size(120, 19);
             transmissionLabel.TabIndex = 17;
@@ -211,7 +172,7 @@
             // 
             doorsLabel.AutoSize = true;
             doorsLabel.Font = new Font("Segoe UI", 10F);
-            doorsLabel.Location = new Point(566, 113);
+            doorsLabel.Location = new Point(618, 110);
             doorsLabel.Name = "doorsLabel";
             doorsLabel.Size = new Size(105, 19);
             doorsLabel.TabIndex = 18;
@@ -221,7 +182,7 @@
             // 
             seatsLabel.AutoSize = true;
             seatsLabel.Font = new Font("Segoe UI", 10F);
-            seatsLabel.Location = new Point(566, 132);
+            seatsLabel.Location = new Point(618, 129);
             seatsLabel.Name = "seatsLabel";
             seatsLabel.Size = new Size(89, 19);
             seatsLabel.TabIndex = 19;
@@ -231,7 +192,7 @@
             // 
             horsePowerLabel.AutoSize = true;
             horsePowerLabel.Font = new Font("Segoe UI", 10F);
-            horsePowerLabel.Location = new Point(566, 151);
+            horsePowerLabel.Location = new Point(618, 148);
             horsePowerLabel.Name = "horsePowerLabel";
             horsePowerLabel.Size = new Size(80, 19);
             horsePowerLabel.TabIndex = 20;
@@ -241,7 +202,7 @@
             // 
             engineCapacityLabel.AutoSize = true;
             engineCapacityLabel.Font = new Font("Segoe UI", 10F);
-            engineCapacityLabel.Location = new Point(566, 170);
+            engineCapacityLabel.Location = new Point(618, 167);
             engineCapacityLabel.Name = "engineCapacityLabel";
             engineCapacityLabel.Size = new Size(122, 19);
             engineCapacityLabel.TabIndex = 21;
@@ -257,11 +218,66 @@
             label4.TabIndex = 22;
             label4.Text = "Список автомобилей";
             // 
+            // filterButton
+            // 
+            filterButton.Font = new Font("Segoe UI", 8F);
+            filterButton.Location = new Point(618, 265);
+            filterButton.Name = "filterButton";
+            filterButton.Size = new Size(185, 30);
+            filterButton.TabIndex = 23;
+            filterButton.Text = "Фильтрация";
+            filterButton.UseVisualStyleBackColor = true;
+            // 
+            // steeringLabel
+            // 
+            steeringLabel.AutoSize = true;
+            steeringLabel.Font = new Font("Segoe UI", 10F);
+            steeringLabel.Location = new Point(618, 186);
+            steeringLabel.Name = "steeringLabel";
+            steeringLabel.Size = new Size(41, 19);
+            steeringLabel.TabIndex = 24;
+            steeringLabel.Text = "Руль:";
+            // 
+            // ABSLabel
+            // 
+            ABSLabel.AutoSize = true;
+            ABSLabel.Font = new Font("Segoe UI", 10F);
+            ABSLabel.Location = new Point(618, 205);
+            ABSLabel.Name = "ABSLabel";
+            ABSLabel.Size = new Size(36, 19);
+            ABSLabel.TabIndex = 26;
+            ABSLabel.Text = "ABS:";
+            // 
+            // ACLabel
+            // 
+            ACLabel.AutoSize = true;
+            ACLabel.Font = new Font("Segoe UI", 10F);
+            ACLabel.Location = new Point(618, 224);
+            ACLabel.Name = "ACLabel";
+            ACLabel.Size = new Size(99, 19);
+            ACLabel.TabIndex = 27;
+            ACLabel.Text = "Кондиционер:";
+            // 
+            // multimediaLabel
+            // 
+            multimediaLabel.AutoSize = true;
+            multimediaLabel.Font = new Font("Segoe UI", 10F);
+            multimediaLabel.Location = new Point(618, 243);
+            multimediaLabel.Name = "multimediaLabel";
+            multimediaLabel.Size = new Size(100, 19);
+            multimediaLabel.TabIndex = 28;
+            multimediaLabel.Text = "Мультимедиа:";
+            // 
             // CarsList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(784, 337);
+            ClientSize = new Size(815, 374);
+            Controls.Add(multimediaLabel);
+            Controls.Add(ACLabel);
+            Controls.Add(ABSLabel);
+            Controls.Add(steeringLabel);
+            Controls.Add(filterButton);
             Controls.Add(label4);
             Controls.Add(engineCapacityLabel);
             Controls.Add(horsePowerLabel);
@@ -277,10 +293,6 @@
             Controls.Add(addButton);
             Controls.Add(dataGridView1);
             Controls.Add(cleanBrandButton);
-            Controls.Add(label2);
-            Controls.Add(brandComboBox);
-            Controls.Add(label1);
-            Controls.Add(countryComboBox);
             Controls.Add(backButton);
             Name = "CarsList";
             Text = "Список автомобилей";
@@ -293,10 +305,6 @@
         #endregion
 
         private Button backButton;
-        private ComboBox countryComboBox;
-        private Label label1;
-        private Label label2;
-        private ComboBox brandComboBox;
         private Button cleanBrandButton;
         private Button addButton;
         private Button editButton;
@@ -312,5 +320,10 @@
         public Label transmissionLabel;
         public DataGridView dataGridView1;
         private Label label4;
+        private Button filterButton;
+        private Label steeringLabel;
+        private Label ABSLabel;
+        private Label ACLabel;
+        private Label multimediaLabel;
     }
 }

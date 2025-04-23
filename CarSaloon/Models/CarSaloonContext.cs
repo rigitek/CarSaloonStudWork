@@ -22,6 +22,7 @@ namespace CarSaloon.Models
         public DbSet<TechData> TechData { get; set; }
         public DbSet<Transmission> Transmissions { get; set; }
         public DbSet<Sale> Sales { get; set; }
+        public DbSet<Steering> Steerings { get; set; }
 
         public CarSaloonContext()
         {
@@ -96,6 +97,11 @@ namespace CarSaloon.Models
                     new Country { Id = 4, Title = "Корея" },
                     new Country { Id = 5, Title = "Франция" },
                     new Country { Id = 6, Title = "Чехия" }
+            );
+
+            modelBuilder.Entity<Steering>().HasData(
+                    new Steering { Id = 1, Title = "Правый" },
+                    new Steering { Id = 2, Title = "Левый" }
             );
 
             modelBuilder.Entity<Employee>().HasData(

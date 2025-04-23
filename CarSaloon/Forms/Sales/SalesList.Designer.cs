@@ -48,6 +48,10 @@
             label3 = new Label();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
+            steeringLabel = new Label();
+            multimediaLabel = new Label();
+            ACLabel = new Label();
+            ABSLabel = new Label();
             paymentComboBox = new ComboBox();
             employeeComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)clientsDataGridView).BeginInit();
@@ -58,9 +62,9 @@
             // 
             // backButton
             // 
-            backButton.Location = new Point(10, 313);
+            backButton.Location = new Point(10, 333);
             backButton.Name = "backButton";
-            backButton.Size = new Size(320, 30);
+            backButton.Size = new Size(321, 30);
             backButton.TabIndex = 0;
             backButton.Text = "Назад";
             backButton.UseVisualStyleBackColor = true;
@@ -88,7 +92,7 @@
             carsDataGridView.AllowUserToDeleteRows = false;
             carsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             carsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            carsDataGridView.Location = new Point(342, 33);
+            carsDataGridView.Location = new Point(6, 21);
             carsDataGridView.Margin = new Padding(3, 2, 3, 2);
             carsDataGridView.Name = "carsDataGridView";
             carsDataGridView.ReadOnly = true;
@@ -210,9 +214,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(336, 313);
+            button1.Location = new Point(336, 321);
             button1.Name = "button1";
-            button1.Size = new Size(400, 30);
+            button1.Size = new Size(400, 41);
             button1.TabIndex = 34;
             button1.Text = "Оформить продажу";
             button1.UseVisualStyleBackColor = true;
@@ -241,9 +245,10 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(336, 285);
+            label3.Font = new Font("Segoe UI", 10F);
+            label3.Location = new Point(12, 311);
             label3.Name = "label3";
-            label3.Size = new Size(94, 15);
+            label3.Size = new Size(109, 19);
             label3.TabIndex = 37;
             label3.Text = "Ответственный:";
             // 
@@ -255,30 +260,75 @@
             groupBox1.Controls.Add(addressLabel);
             groupBox1.Location = new Point(10, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(320, 270);
+            groupBox1.Size = new Size(320, 265);
             groupBox1.TabIndex = 38;
             groupBox1.TabStop = false;
             groupBox1.Text = "Клиенты";
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(steeringLabel);
+            groupBox2.Controls.Add(multimediaLabel);
+            groupBox2.Controls.Add(ACLabel);
+            groupBox2.Controls.Add(ABSLabel);
             groupBox2.Controls.Add(bodyLabel);
             groupBox2.Controls.Add(driveLabel);
             groupBox2.Controls.Add(engineTypeLabel);
             groupBox2.Controls.Add(engineCapacityLabel);
             groupBox2.Controls.Add(transmissionLabel);
+            groupBox2.Controls.Add(carsDataGridView);
             groupBox2.Location = new Point(336, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(400, 270);
+            groupBox2.Size = new Size(400, 303);
             groupBox2.TabIndex = 39;
             groupBox2.TabStop = false;
             groupBox2.Text = "Автомобили";
+            // 
+            // steeringLabel
+            // 
+            steeringLabel.AutoSize = true;
+            steeringLabel.Font = new Font("Segoe UI", 10F);
+            steeringLabel.Location = new Point(6, 263);
+            steeringLabel.Name = "steeringLabel";
+            steeringLabel.Size = new Size(41, 19);
+            steeringLabel.TabIndex = 34;
+            steeringLabel.Text = "Руль:";
+            // 
+            // multimediaLabel
+            // 
+            multimediaLabel.AutoSize = true;
+            multimediaLabel.Font = new Font("Segoe UI", 10F);
+            multimediaLabel.Location = new Point(202, 282);
+            multimediaLabel.Name = "multimediaLabel";
+            multimediaLabel.Size = new Size(100, 19);
+            multimediaLabel.TabIndex = 33;
+            multimediaLabel.Text = "Мультимедиа:";
+            // 
+            // ACLabel
+            // 
+            ACLabel.AutoSize = true;
+            ACLabel.Font = new Font("Segoe UI", 10F);
+            ACLabel.Location = new Point(202, 263);
+            ACLabel.Name = "ACLabel";
+            ACLabel.Size = new Size(99, 19);
+            ACLabel.TabIndex = 31;
+            ACLabel.Text = "Кондиционер:";
+            // 
+            // ABSLabel
+            // 
+            ABSLabel.AutoSize = true;
+            ABSLabel.Font = new Font("Segoe UI", 10F);
+            ABSLabel.Location = new Point(6, 282);
+            ABSLabel.Name = "ABSLabel";
+            ABSLabel.Size = new Size(36, 19);
+            ABSLabel.TabIndex = 30;
+            ABSLabel.Text = "ABS:";
             // 
             // paymentComboBox
             // 
             paymentComboBox.FormattingEnabled = true;
             paymentComboBox.Items.AddRange(new object[] { "Наличный", "Безналичный", "Кредит" });
-            paymentComboBox.Location = new Point(75, 284);
+            paymentComboBox.Location = new Point(75, 281);
             paymentComboBox.Name = "paymentComboBox";
             paymentComboBox.Size = new Size(255, 23);
             paymentComboBox.TabIndex = 40;
@@ -286,16 +336,16 @@
             // employeeComboBox
             // 
             employeeComboBox.FormattingEnabled = true;
-            employeeComboBox.Location = new Point(436, 282);
+            employeeComboBox.Location = new Point(127, 307);
             employeeComboBox.Name = "employeeComboBox";
-            employeeComboBox.Size = new Size(300, 23);
+            employeeComboBox.Size = new Size(204, 23);
             employeeComboBox.TabIndex = 41;
             // 
             // SalesList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(748, 350);
+            ClientSize = new Size(746, 369);
             Controls.Add(employeeComboBox);
             Controls.Add(paymentComboBox);
             Controls.Add(label3);
@@ -304,7 +354,6 @@
             Controls.Add(horsePowerLabel);
             Controls.Add(seatsLabel);
             Controls.Add(doorsLabel);
-            Controls.Add(carsDataGridView);
             Controls.Add(clientsDataGridView);
             Controls.Add(backButton);
             Controls.Add(groupBox1);
@@ -346,5 +395,9 @@
         private GroupBox groupBox2;
         private ComboBox paymentComboBox;
         private ComboBox employeeComboBox;
+        public Label steeringLabel;
+        public Label multimediaLabel;
+        public Label ACLabel;
+        public Label ABSLabel;
     }
 }

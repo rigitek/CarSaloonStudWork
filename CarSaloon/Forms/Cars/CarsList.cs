@@ -30,11 +30,13 @@ namespace CarSaloon.Cars
             dataGridView1.Columns["Id"].Visible = false;
             dataGridView1.Columns["TechData"].Visible = false;
 
+            dataGridView1.Columns["Brand"].HeaderText = "Производитель";
             dataGridView1.Columns["Model"].HeaderText = "Модель";
+            dataGridView1.Columns["Year"].HeaderText = "Год";
             dataGridView1.Columns["Country"].HeaderText = "Страна";
             dataGridView1.Columns["Available"].HeaderText = "Наличие";
-            dataGridView1.Columns["Price"].HeaderText = "Цена";
-            dataGridView1.Columns["Brand"].HeaderText = "Производитель";
+            dataGridView1.Columns["Price"].HeaderText = "Цена Руб.";
+            dataGridView1.Columns["Odometer"].HeaderText = "Пробег Км.";
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -48,27 +50,10 @@ namespace CarSaloon.Cars
             menu.Show();
         }
 
-        private void brandComboBox_Click(object sender, EventArgs e)
-        {
-            brandComboBox.DataSource = db.Brands.ToList();
-            brandComboBox.DisplayMember = "Title";
-            brandComboBox.ValueMember = "Id";
-        }
-
-        private void countryComboBox_Click(object sender, EventArgs e)
-        {
-            countryComboBox.DataSource = db.Countries.ToList();
-            countryComboBox.DisplayMember = "Title";
-            countryComboBox.ValueMember = "Id";
-        }
+        
 
         private void cleanBrandButton_Click(object sender, EventArgs e)
         {
-            brandComboBox.DataSource = null;
-            brandComboBox.Text = "Не выбрано";
-
-            countryComboBox.DataSource = null;
-            countryComboBox.Text = "Не выбрано";
 
             dataGridView1.DataSource = db.Cars.Local.ToBindingList();
         }
@@ -101,6 +86,38 @@ namespace CarSaloon.Cars
                 horsePowerLabel.Text += car.TechData.HorsePower + " л.с.";
                 engineCapacityLabel.Text = "Объем двигателя: ";
                 engineCapacityLabel.Text += car.TechData.EngineCapacity + " литров";
+                steeringLabel.Text = "Руль: ";
+                steeringLabel.Text += car.TechData.Steering;
+                if (car.TechData.ABS == true)
+                {
+                    ABSLabel.Text = "ABS: ";
+                    ABSLabel.Text += "Есть";
+                }
+                else
+                {
+                    ABSLabel.Text = "ABS: ";
+                    ABSLabel.Text += "Нет";
+                }
+                if (car.TechData.AC == true)
+                {
+                    ACLabel.Text = "Кондиционер: ";
+                    ACLabel.Text += "Есть";
+                }
+                else
+                {
+                    ACLabel.Text = "Кондиционер: ";
+                    ACLabel.Text += "Нет";
+                }
+                if (car.TechData.Multimedia == true)
+                {
+                    multimediaLabel.Text = "Мультимедиа: ";
+                    multimediaLabel.Text += "Есть";
+                }
+                else
+                {
+                    multimediaLabel.Text = "Мультимедиа: ";
+                    multimediaLabel.Text += "Нет";
+                }
             }
         }
 
@@ -140,30 +157,10 @@ namespace CarSaloon.Cars
                 seatsLabel.Text = "Кол-во мест: ";
                 horsePowerLabel.Text = "Мощность: ";
                 engineCapacityLabel.Text = "Объем двигателя: ";
-            }
-        }
-
-        private void countryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (brandComboBox.DataSource == null)
-            {
-                dataGridView1.DataSource = db.Cars.Local.Where(x => x.Country == countryComboBox.SelectedItem).ToList();
-            }
-            else
-            {
-                dataGridView1.DataSource = db.Cars.Local.Where(x => x.Country == countryComboBox.SelectedItem && x.Brand == brandComboBox.SelectedItem).ToList();
-            }
-        }
-
-        private void brandComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (countryComboBox.DataSource == null)
-            {
-                dataGridView1.DataSource = db.Cars.Local.Where(x => x.Brand == brandComboBox.SelectedItem).ToList();
-            }
-            else
-            {
-                dataGridView1.DataSource = db.Cars.Local.Where(x => x.Brand == brandComboBox.SelectedItem && x.Country == countryComboBox.SelectedItem).ToList();
+                steeringLabel.Text = "Руль: ";
+                ABSLabel.Text = "ABS: ";
+                ACLabel.Text = "Кондиционер: ";
+                multimediaLabel.Text = "Мультимедиа: "; 
             }
         }
 
@@ -191,7 +188,6 @@ namespace CarSaloon.Cars
 
                 this.Refresh();
             }
-
         }
 
         private void DBRefresh()
@@ -204,6 +200,7 @@ namespace CarSaloon.Cars
             db.Bodies.Load();
             db.Drives.Load();
             db.EngineTypes.Load();
+            db.Steerings.Load();
         }
     }
 }

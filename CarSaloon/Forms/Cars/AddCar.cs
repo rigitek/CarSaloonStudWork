@@ -44,6 +44,10 @@ namespace CarSaloon.Forms.Cars
             driveComboBox.DisplayMember = "Title";
             driveComboBox.ValueMember = "Id";
 
+            steeringComboBox.DataSource = db.Steerings.ToArray();
+            steeringComboBox.DisplayMember = "Title";
+            steeringComboBox.ValueMember = "Id";
+
             button1.Visible = true;
             button2.Visible = false;
         }
@@ -76,11 +80,17 @@ namespace CarSaloon.Forms.Cars
             driveComboBox.DisplayMember = "Title";
             driveComboBox.ValueMember = "Id";
 
+            steeringComboBox.DataSource = db.Steerings.ToArray();
+            steeringComboBox.DisplayMember = "Title";
+            steeringComboBox.ValueMember = "Id";
+
             brandComboBox.SelectedValue = car.Brand.Id;
             countryComboBox.SelectedValue = car.Country.Id;
             modelTextBox.Text = car.Model;
             priceTextBox.Text = car.Price.ToString();
             availableCheckBox.Checked = car.Available;
+            yearTextBox.Text = car.Year.ToString();
+            odometerTextBox.Text = car.Odometer.ToString();
 
             bodyComboBox.SelectedValue = car.TechData.Body.Id;
             driveComboBox.SelectedValue = car.TechData.Drive.Id;
@@ -90,6 +100,10 @@ namespace CarSaloon.Forms.Cars
             seatsNumericUpDown.Value = car.TechData.Seats;
             doorsNumericUpDown.Value = car.TechData.Doors;
             horsePowerTextBox.Text = car.TechData.HorsePower.ToString();
+            ACCheckBox.Checked = car.TechData.AC;
+            ABSCheckBox.Checked = car.TechData.ABS;
+            multimediaCheckBox.Checked = car.TechData.Multimedia;
+            steeringComboBox.SelectedValue = car.TechData.Steering.Id;
 
             button1.Visible = false;
             button2.Visible=true;
@@ -109,6 +123,10 @@ namespace CarSaloon.Forms.Cars
             techData.Seats = (int)seatsNumericUpDown.Value;
             techData.Doors = (int)doorsNumericUpDown.Value;
             techData.HorsePower = int.Parse(horsePowerTextBox.Text);
+            techData.AC = ACCheckBox.Checked;
+            techData.ABS = ABSCheckBox.Checked;
+            techData.Multimedia = multimediaCheckBox.Checked;
+            techData.Steering = steeringComboBox.SelectedItem as Steering;
 
             db.TechData.Add(techData);
             db.SaveChanges();
@@ -120,6 +138,10 @@ namespace CarSaloon.Forms.Cars
             car.Model = modelTextBox.Text;
             car.Price = int.Parse(priceTextBox.Text);
             car.Available = availableCheckBox.Checked;
+            car.Year = int.Parse(yearTextBox.Text);
+            car.Odometer = int.Parse(odometerTextBox.Text);
+            car.VIN = VINTextBox.Text;
+
             car.TechData = techData;
 
             db.Cars.Add(car);
@@ -140,6 +162,10 @@ namespace CarSaloon.Forms.Cars
             techData.Seats = (int)seatsNumericUpDown.Value;
             techData.Doors = (int)doorsNumericUpDown.Value;
             techData.HorsePower = int.Parse(horsePowerTextBox.Text);
+            techData.AC = ACCheckBox.Checked;
+            techData.ABS = ABSCheckBox.Checked;
+            techData.Multimedia = multimediaCheckBox.Checked;
+            techData.Steering = steeringComboBox.SelectedItem as Steering;
 
             db.TechData.Update(techData);
             db.SaveChanges();
@@ -151,6 +177,9 @@ namespace CarSaloon.Forms.Cars
             car.Model = modelTextBox.Text;
             car.Price = int.Parse(priceTextBox.Text);
             car.Available = availableCheckBox.Checked;
+            car.Year = int.Parse(yearTextBox.Text);
+            car.Odometer = int.Parse(odometerTextBox.Text);
+
             car.TechData = techData;
 
             db.Cars.Update(car);

@@ -13,9 +13,13 @@ namespace CarSaloon.Models
         public int Seats { get; set; }
         public float EngineCapacity { get; set; }
         public int HorsePower { get; set; }
+        public bool ABS { get; set; }
+        public bool AC { get; set; }
+        public bool Multimedia { get; set; }
         public  Body? Body { get; set; }
         public  EngineType? EngineType { get; set; }
         public  Drive? Drive { get; set; }
+        public Steering? Steering { get; set; }
         public Transmission? Transmission { get; set; }
     }
 }
