@@ -56,7 +56,7 @@
             // 
             backButton.Location = new Point(618, 337);
             backButton.Name = "backButton";
-            backButton.Size = new Size(185, 30);
+            backButton.Size = new Size(193, 30);
             backButton.TabIndex = 0;
             backButton.Text = "Назад";
             backButton.UseVisualStyleBackColor = true;
@@ -67,7 +67,7 @@
             cleanBrandButton.Font = new Font("Segoe UI", 8F);
             cleanBrandButton.Location = new Point(618, 301);
             cleanBrandButton.Name = "cleanBrandButton";
-            cleanBrandButton.Size = new Size(185, 30);
+            cleanBrandButton.Size = new Size(193, 30);
             cleanBrandButton.TabIndex = 7;
             cleanBrandButton.Text = "Сброс фильтра";
             cleanBrandButton.UseVisualStyleBackColor = true;
@@ -223,10 +223,11 @@
             filterButton.Font = new Font("Segoe UI", 8F);
             filterButton.Location = new Point(618, 265);
             filterButton.Name = "filterButton";
-            filterButton.Size = new Size(185, 30);
+            filterButton.Size = new Size(193, 30);
             filterButton.TabIndex = 23;
             filterButton.Text = "Фильтрация";
             filterButton.UseVisualStyleBackColor = true;
+            filterButton.Click += filterButton_Click;
             // 
             // steeringLabel
             // 
@@ -272,7 +273,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(815, 374);
+            ClientSize = new Size(814, 376);
             Controls.Add(multimediaLabel);
             Controls.Add(ACLabel);
             Controls.Add(ABSLabel);

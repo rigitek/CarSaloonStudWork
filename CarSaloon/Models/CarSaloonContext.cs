@@ -38,7 +38,7 @@ namespace CarSaloon.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Brand>().HasData(
-                    new Brand { Id=1,Title = "Audi" },
+                    new Brand { Id = 1, Title = "Audi" },
                     new Brand { Id = 2, Title = "BMW" },
                     new Brand { Id = 3, Title = "Chevrolet" },
                     new Brand { Id = 4, Title = "Ford" },

@@ -18,23 +18,24 @@ namespace CarSaloon.Cars
 {
     public partial class CarsList : Form
     {
-        CarSaloonContext db = new CarSaloonContext();
+       public CarSaloonContext db = new CarSaloonContext();
+        public List<Car> Cars;
         public CarsList()
         {
             InitializeComponent();
 
             DBRefresh();
 
-            dataGridView1.DataSource = db.Cars.Local.ToBindingList();
+            dataGridView1.DataSource = db.Cars.Where(x=>x.Available==true).ToList();
 
             dataGridView1.Columns["Id"].Visible = false;
             dataGridView1.Columns["TechData"].Visible = false;
 
-            dataGridView1.Columns["Brand"].HeaderText = "Производитель";
+            dataGridView1.Columns["Brand"].HeaderText = "Марка";
             dataGridView1.Columns["Model"].HeaderText = "Модель";
             dataGridView1.Columns["Year"].HeaderText = "Год";
             dataGridView1.Columns["Country"].HeaderText = "Страна";
-            dataGridView1.Columns["Available"].HeaderText = "Наличие";
+            dataGridView1.Columns["Available"].Visible = false;
             dataGridView1.Columns["Price"].HeaderText = "Цена Руб.";
             dataGridView1.Columns["Odometer"].HeaderText = "Пробег Км.";
         }
@@ -50,7 +51,7 @@ namespace CarSaloon.Cars
             menu.Show();
         }
 
-        
+
 
         private void cleanBrandButton_Click(object sender, EventArgs e)
         {
@@ -160,7 +161,7 @@ namespace CarSaloon.Cars
                 steeringLabel.Text = "Руль: ";
                 ABSLabel.Text = "ABS: ";
                 ACLabel.Text = "Кондиционер: ";
-                multimediaLabel.Text = "Мультимедиа: "; 
+                multimediaLabel.Text = "Мультимедиа: ";
             }
         }
 
@@ -201,6 +202,123 @@ namespace CarSaloon.Cars
             db.Drives.Load();
             db.EngineTypes.Load();
             db.Steerings.Load();
+        }
+
+        private void filterButton_Click(object sender, EventArgs e)
+        {
+            
+            Filter filter=new Filter();
+            if(filter.ShowDialog()== DialogResult.OK)
+            {
+               
+                if (filter.ABSCheckBox.Checked)
+                {
+                   Cars = db.Cars.Where(x => x.TechData.ABS == filter.ABSCheckBox.Checked).ToList();
+                }
+                else Cars = db.Cars.ToList();
+                if (filter.ACCheckBox.Checked)
+                {
+                    Cars = Cars.Where(x => x.TechData.AC == filter.ACCheckBox.Checked).ToList();
+                }
+                else Cars = Cars.ToList();
+                if (filter.availableCheckBox.Checked)
+                {
+                    Cars = Cars.Where(x => x.Available==filter.availableCheckBox.Checked).ToList();
+                }
+                else Cars = Cars.ToList();
+                if (filter.bodyComboBox != null)
+                {
+                    Cars = Cars.Where(x => x.TechData.Body.Title == filter.bodyComboBox.Text).ToList();
+                }
+                
+               // if (filter.brandComboBox != null)
+               // {
+                //    Cars = Cars.Where(x => x.Brand.Title == filter.brandComboBox.Text).ToList();
+                //}
+                
+                //if (filter.countryComboBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.Country.Title == filter.countryComboBox.Text).ToList();
+                //}
+
+                //if (filter.driveComboBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.TechData.Drive.Title == filter.driveComboBox.Text).ToList();
+                //}
+                //if (filter.engineCapacityFromNumericUpDown != null)
+                //{
+                //    Cars = Cars.Where(x => x.TechData.EngineCapacity > ((float)filter.engineCapacityFromNumericUpDown.Value)).ToList();
+                //}
+                //if (filter.engineCapacityToNumericUpDown != null)
+                //{
+                //    Cars = Cars.Where(x => x.TechData.EngineCapacity < ((float)filter.engineCapacityToNumericUpDown.Value)).ToList();
+                //}
+                //if (filter.engineTypeComboBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.TechData.EngineType.Title == filter.engineTypeComboBox.Text).ToList();
+                //}
+                //if (filter.horsePowerFromTextBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.TechData.HorsePower > int.Parse(filter.horsePowerFromTextBox.Text)).ToList();
+                //}
+                //if (filter.horsePowerToTextBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.TechData.HorsePower < int.Parse(filter.horsePowerToTextBox.Text)).ToList();
+                //}
+                //if (filter.multimediaCheckBox.Checked)
+                //{
+                //    Cars = Cars.Where(x => x.TechData.Multimedia == filter.multimediaCheckBox.Checked).ToList();
+                //}
+                //if (filter.odometerFromTextBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.Odometer > int.Parse(filter.odometerFromTextBox.Text)).ToList();
+                //}
+                //if (filter.odometerToTextBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.Odometer < int.Parse(filter.odometerToTextBox.Text)).ToList();
+                //}
+                //if (filter.priceFromTextBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.Price > int.Parse(filter.priceFromTextBox.Text)).ToList();
+                //}
+                //if (filter.priceToTextBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.Price < int.Parse(filter.priceToTextBox.Text)).ToList();
+                //}
+
+                //if (filter.steeringComboBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.TechData.Steering.Title == filter.steeringComboBox.Text).ToList();
+                //}
+                //if (filter.transmissionComboBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.TechData.Transmission.Title == filter.transmissionComboBox.Text).ToList();
+                //}
+                //if (filter.yearFormTextBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.Year > int.Parse(filter.yearFormTextBox.Text)).ToList();
+                //}
+                //if (filter.yearToTextBox != null)
+                //{
+                //    Cars = Cars.Where(x => x.Year < int.Parse(filter.yearToTextBox.Text)).ToList();
+                //}
+
+                bodyLabel.Text = "Кузов: ";
+                driveLabel.Text = "Привод: ";
+                engineTypeLabel.Text = "Двигатель: ";
+                transmissionLabel.Text = "Трансмиссия: ";
+                doorsLabel.Text = "Кол-во дверей: ";
+                seatsLabel.Text = "Кол-во мест: ";
+                horsePowerLabel.Text = "Мощность: ";
+                engineCapacityLabel.Text = "Объем двигателя: ";
+                steeringLabel.Text = "Руль: ";
+                ABSLabel.Text = "ABS: ";
+                ACLabel.Text = "Кондиционер: ";
+                multimediaLabel.Text = "Мультимедиа: ";
+
+                dataGridView1.DataSource = Cars;
+                dataGridView1.Refresh();
+            }
         }
     }
 }
