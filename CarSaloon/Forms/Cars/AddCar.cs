@@ -91,6 +91,7 @@ namespace CarSaloon.Forms.Cars
             availableCheckBox.Checked = car.Available;
             yearTextBox.Text = car.Year.ToString();
             odometerTextBox.Text = car.Odometer.ToString();
+            VINTextBox.Text = car.VIN;
 
             bodyComboBox.SelectedValue = car.TechData.Body.Id;
             driveComboBox.SelectedValue = car.TechData.Drive.Id;
@@ -179,6 +180,7 @@ namespace CarSaloon.Forms.Cars
             car.Available = availableCheckBox.Checked;
             car.Year = int.Parse(yearTextBox.Text);
             car.Odometer = int.Parse(odometerTextBox.Text);
+            car.VIN = VINTextBox.Text;
 
             car.TechData = techData;
 

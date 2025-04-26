@@ -56,6 +56,7 @@ namespace CarSaloon.Cars
         private void cleanBrandButton_Click(object sender, EventArgs e)
         {
             
+            
             dataGridView1.DataSource = db.Cars.Local.ToBindingList();
         }
 
@@ -206,76 +207,116 @@ namespace CarSaloon.Cars
 
         private void filterButton_Click(object sender, EventArgs e)
         {
-
-
-            if (availableCheckBox.Checked)
+            Filter filter = new Filter();
+            if (filter.ShowDialog() == DialogResult.OK)
             {
-                Cars = db.Cars.Local.Where(x => x.Available == availableCheckBox.Checked).ToList();
+                if (filter.ABSCheckBox.Checked)
+                {
+                    Cars = db.Cars.Where(x => x.TechData.ABS == filter.ABSCheckBox.Checked).ToList();
+                }
+                else Cars = db.Cars.ToList();
+                if (filter.ACCheckBox.Checked)
+                {
+                    Cars = Cars.Where(x => x.TechData.AC == filter.ACCheckBox.Checked).ToList();
+                }
+                else Cars = Cars.ToList();
+                if (filter.availableCheckBox.Checked)
+                {
+                    Cars = Cars.Where(x => x.Available == filter.availableCheckBox.Checked).ToList();
+                }
+                else Cars = Cars.ToList();
+                if (filter.bodyComboBox.DataSource != null)
+                {
+                    Cars = Cars.Where(x => x.TechData.Body.Title == filter.bodyComboBox.Text).ToList();
+                }
+                if (filter.brandComboBox.DataSource != null)
+                {
+                    Cars = Cars.Where(x => x.Brand.Title == filter.brandComboBox.Text).ToList();
+                }
+                if (filter.countryComboBox.DataSource != null)
+                {
+                    Cars = Cars.Where(x => x.Country.Title == filter.countryComboBox.Text).ToList();
+                }
+                if (filter.driveComboBox.DataSource != null)
+                {
+                    Cars = Cars.Where(x => x.TechData.Drive.Title == filter.driveComboBox.Text).ToList();
+                }
+                if (filter.engineCapacityFromNumericUpDown != null)
+                {
+                    Cars = Cars.Where(x => x.TechData.EngineCapacity >= ((float)filter.engineCapacityFromNumericUpDown.Value)).ToList();
+                }
+                if (filter.engineCapacityToNumericUpDown != null)
+                {
+                    Cars = Cars.Where(x => x.TechData.EngineCapacity <= ((float)filter.engineCapacityToNumericUpDown.Value)).ToList();
+                }
+                if (filter.engineTypeComboBox.DataSource != null)
+                {
+                    Cars = Cars.Where(x => x.TechData.EngineType.Title == filter.engineTypeComboBox.Text).ToList();
+                }
+                if (filter.horsePowerFromTextBox.Text != "")
+                {
+                    Cars = Cars.Where(x => x.TechData.HorsePower > int.Parse(filter.horsePowerFromTextBox.Text)).ToList();
+                }
+                if (filter.horsePowerToTextBox.Text != "")
+                {
+                    Cars = Cars.Where(x => x.TechData.HorsePower < int.Parse(filter.horsePowerToTextBox.Text)).ToList();
+                }
+                if (filter.multimediaCheckBox.Checked)
+                {
+                    Cars = Cars.Where(x => x.TechData.Multimedia == filter.multimediaCheckBox.Checked).ToList();
+                }
+                if (filter.odometerFromTextBox.Text != "")
+                {
+                    Cars = Cars.Where(x => x.Odometer >= int.Parse(filter.odometerFromTextBox.Text)).ToList();
+                }
+                if (filter.odometerToTextBox.Text != "")
+                {
+                    Cars = Cars.Where(x => x.Odometer <= int.Parse(filter.odometerToTextBox.Text)).ToList();
+                }
+                if (filter.priceFromTextBox.Text != "")
+                {
+                    Cars = Cars.Where(x => x.Price >= int.Parse(filter.priceFromTextBox.Text)).ToList();
+                }
+                if (filter.priceToTextBox.Text != "")
+                {
+                    Cars = Cars.Where(x => x.Price <= int.Parse(filter.priceToTextBox.Text)).ToList();
+                }
+                if (filter.steeringComboBox.DataSource != null)
+                {
+                    Cars = Cars.Where(x => x.TechData.Steering.Title == filter.steeringComboBox.Text).ToList();
+                }
+                if (filter.transmissionComboBox.DataSource != null)
+                {
+                    Cars = Cars.Where(x => x.TechData.Transmission.Title == filter.transmissionComboBox.Text).ToList();
+                }
+                if (filter.yearFormTextBox.Text != "")
+                {
+                    Cars = Cars.Where(x => x.Year >= int.Parse(filter.yearFormTextBox.Text)).ToList();
+                }
+                if (filter.yearToTextBox.Text != "")
+                {
+                    Cars = Cars.Where(x => x.Year <= int.Parse(filter.yearToTextBox.Text)).ToList();
+                }
+
+                bodyLabel.Text = "Кузов: ";
+                driveLabel.Text = "Привод: ";
+                engineTypeLabel.Text = "Двигатель: ";
+                transmissionLabel.Text = "Трансмиссия: ";
+                doorsLabel.Text = "Кол-во дверей: ";
+                seatsLabel.Text = "Кол-во мест: ";
+                horsePowerLabel.Text = "Мощность: ";
+                engineCapacityLabel.Text = "Объем двигателя: ";
+                steeringLabel.Text = "Руль: ";
+                ABSLabel.Text = "ABS: ";
+                ACLabel.Text = "Кондиционер: ";
+                multimediaLabel.Text = "Мультимедиа: ";
+
+                dataGridView1.DataSource = Cars;
+                dataGridView1.Refresh();
             }
-            else Cars = db.Cars.Local.ToList();
-            // if (bodyComboBox != null)
-            //{
-            //     Cars = Cars.Where(x => x.TechData.Body.Title == filter.bodyComboBox.Text).ToList();
-            //}
-
-            if (brandComboBox != null)
-            {
-                Cars = Cars.Where(x => x.Brand.Title == brandComboBox.Text).ToList();
-            }
-
-            if (countryComboBox != null)
-            {
-                Cars = Cars.Where(x => x.Country.Title == countryComboBox.Text).ToList();
-            }
-
-
-            //if (filter.odometerFromTextBox != null)
-            //{
-            //    Cars = Cars.Where(x => x.Odometer > int.Parse(filter.odometerFromTextBox.Text)).ToList();
-            //}
-            //if (filter.odometerToTextBox != null)
-            //{
-            //    Cars = Cars.Where(x => x.Odometer < int.Parse(filter.odometerToTextBox.Text)).ToList();
-            //}
-            //if (filter.priceFromTextBox != null)
-            //{
-            //    Cars = Cars.Where(x => x.Price > int.Parse(filter.priceFromTextBox.Text)).ToList();
-            //}
-            //if (filter.priceToTextBox != null)
-            //{
-            //    Cars = Cars.Where(x => x.Price < int.Parse(filter.priceToTextBox.Text)).ToList();
-            //}
-
-            bodyLabel.Text = "Кузов: ";
-            driveLabel.Text = "Привод: ";
-            engineTypeLabel.Text = "Двигатель: ";
-            transmissionLabel.Text = "Трансмиссия: ";
-            doorsLabel.Text = "Кол-во дверей: ";
-            seatsLabel.Text = "Кол-во мест: ";
-            horsePowerLabel.Text = "Мощность: ";
-            engineCapacityLabel.Text = "Объем двигателя: ";
-            steeringLabel.Text = "Руль: ";
-            ABSLabel.Text = "ABS: ";
-            ACLabel.Text = "Кондиционер: ";
-            multimediaLabel.Text = "Мультимедиа: ";
-
-            dataGridView1.DataSource = Cars;
-            dataGridView1.Refresh();
         }
 
 
-        private void countryComboBox_Click(object sender, EventArgs e)
-        {
-            countryComboBox.DataSource = db.Countries.ToList();
-            countryComboBox.DisplayMember = "Title";
-            countryComboBox.ValueMember = "Id";
-        }
-
-        private void brandComboBox_Click(object sender, EventArgs e)
-        {
-            brandComboBox.DataSource = db.Brands.ToList();
-            brandComboBox.DisplayMember = "Title";
-            brandComboBox.ValueMember = "Id";
-        }
+       
     }
 }
