@@ -49,12 +49,23 @@
             ABSLabel = new Label();
             ACLabel = new Label();
             multimediaLabel = new Label();
+            label1 = new Label();
+            brandComboBox = new ComboBox();
+            countryComboBox = new ComboBox();
+            label2 = new Label();
+            label5 = new Label();
+            priceFromTextBox = new TextBox();
+            priceToTextBox = new TextBox();
+            odometerToTextBox = new TextBox();
+            odometerFromTextBox = new TextBox();
+            label6 = new Label();
+            availableCheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // backButton
             // 
-            backButton.Location = new Point(618, 337);
+            backButton.Location = new Point(618, 345);
             backButton.Name = "backButton";
             backButton.Size = new Size(193, 30);
             backButton.TabIndex = 0;
@@ -67,7 +78,7 @@
             cleanBrandButton.Font = new Font("Segoe UI", 8F);
             cleanBrandButton.Location = new Point(618, 301);
             cleanBrandButton.Name = "cleanBrandButton";
-            cleanBrandButton.Size = new Size(193, 30);
+            cleanBrandButton.Size = new Size(193, 38);
             cleanBrandButton.TabIndex = 7;
             cleanBrandButton.Text = "Сброс фильтра";
             cleanBrandButton.UseVisualStyleBackColor = true;
@@ -84,13 +95,13 @@
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(600, 294);
+            dataGridView1.Size = new Size(600, 258);
             dataGridView1.TabIndex = 9;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // addButton
             // 
-            addButton.Location = new Point(12, 337);
+            addButton.Location = new Point(12, 345);
             addButton.Name = "addButton";
             addButton.Size = new Size(196, 30);
             addButton.TabIndex = 10;
@@ -100,7 +111,7 @@
             // 
             // editButton
             // 
-            editButton.Location = new Point(214, 337);
+            editButton.Location = new Point(214, 345);
             editButton.Name = "editButton";
             editButton.Size = new Size(196, 30);
             editButton.TabIndex = 11;
@@ -110,7 +121,7 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(416, 337);
+            deleteButton.Location = new Point(416, 345);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(196, 30);
             deleteButton.TabIndex = 12;
@@ -269,11 +280,124 @@
             multimediaLabel.TabIndex = 28;
             multimediaLabel.Text = "Мультимедиа:";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F);
+            label1.Location = new Point(118, 301);
+            label1.Name = "label1";
+            label1.Size = new Size(43, 15);
+            label1.TabIndex = 29;
+            label1.Text = "Марка";
+            // 
+            // brandComboBox
+            // 
+            brandComboBox.FormattingEnabled = true;
+            brandComboBox.Location = new Point(118, 319);
+            brandComboBox.Name = "brandComboBox";
+            brandComboBox.Size = new Size(100, 23);
+            brandComboBox.TabIndex = 30;
+            brandComboBox.Click += brandComboBox_Click;
+            // 
+            // countryComboBox
+            // 
+            countryComboBox.FormattingEnabled = true;
+            countryComboBox.Location = new Point(12, 319);
+            countryComboBox.Name = "countryComboBox";
+            countryComboBox.Size = new Size(100, 23);
+            countryComboBox.TabIndex = 32;
+            countryComboBox.Click += countryComboBox_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F);
+            label2.Location = new Point(12, 301);
+            label2.Name = "label2";
+            label2.Size = new Size(46, 15);
+            label2.TabIndex = 31;
+            label2.Text = "Страна";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F);
+            label5.Location = new Point(224, 301);
+            label5.Name = "label5";
+            label5.Size = new Size(35, 15);
+            label5.TabIndex = 33;
+            label5.Text = "Цена";
+            // 
+            // priceFromTextBox
+            // 
+            priceFromTextBox.Location = new Point(224, 319);
+            priceFromTextBox.Name = "priceFromTextBox";
+            priceFromTextBox.PlaceholderText = "От";
+            priceFromTextBox.Size = new Size(50, 23);
+            priceFromTextBox.TabIndex = 34;
+            // 
+            // priceToTextBox
+            // 
+            priceToTextBox.Location = new Point(280, 319);
+            priceToTextBox.Name = "priceToTextBox";
+            priceToTextBox.PlaceholderText = "До";
+            priceToTextBox.Size = new Size(50, 23);
+            priceToTextBox.TabIndex = 35;
+            // 
+            // odometerToTextBox
+            // 
+            odometerToTextBox.Location = new Point(392, 319);
+            odometerToTextBox.Name = "odometerToTextBox";
+            odometerToTextBox.PlaceholderText = "До";
+            odometerToTextBox.Size = new Size(50, 23);
+            odometerToTextBox.TabIndex = 38;
+            // 
+            // odometerFromTextBox
+            // 
+            odometerFromTextBox.Location = new Point(336, 319);
+            odometerFromTextBox.Name = "odometerFromTextBox";
+            odometerFromTextBox.PlaceholderText = "От";
+            odometerFromTextBox.Size = new Size(50, 23);
+            odometerFromTextBox.TabIndex = 37;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9F);
+            label6.Location = new Point(336, 301);
+            label6.Name = "label6";
+            label6.Size = new Size(69, 15);
+            label6.TabIndex = 36;
+            label6.Text = "Пробег км.";
+            // 
+            // availableCheckBox
+            // 
+            availableCheckBox.AutoSize = true;
+            availableCheckBox.Checked = true;
+            availableCheckBox.CheckState = CheckState.Checked;
+            availableCheckBox.Location = new Point(448, 321);
+            availableCheckBox.Name = "availableCheckBox";
+            availableCheckBox.Size = new Size(75, 19);
+            availableCheckBox.TabIndex = 39;
+            availableCheckBox.Text = "Наличие";
+            availableCheckBox.UseVisualStyleBackColor = true;
+            // 
             // CarsList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(814, 376);
+            ClientSize = new Size(814, 381);
+            Controls.Add(availableCheckBox);
+            Controls.Add(odometerToTextBox);
+            Controls.Add(odometerFromTextBox);
+            Controls.Add(label6);
+            Controls.Add(priceToTextBox);
+            Controls.Add(priceFromTextBox);
+            Controls.Add(label5);
+            Controls.Add(countryComboBox);
+            Controls.Add(label2);
+            Controls.Add(brandComboBox);
+            Controls.Add(label1);
             Controls.Add(multimediaLabel);
             Controls.Add(ACLabel);
             Controls.Add(ABSLabel);
@@ -326,5 +450,16 @@
         private Label ABSLabel;
         private Label ACLabel;
         private Label multimediaLabel;
+        private Label label1;
+        private ComboBox brandComboBox;
+        private ComboBox countryComboBox;
+        private Label label2;
+        private Label label5;
+        private TextBox priceFromTextBox;
+        private TextBox priceToTextBox;
+        private TextBox odometerToTextBox;
+        private TextBox odometerFromTextBox;
+        private Label label6;
+        private CheckBox availableCheckBox;
     }
 }
