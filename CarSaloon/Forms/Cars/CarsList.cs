@@ -35,9 +35,10 @@ namespace CarSaloon.Cars
             dataGridView1.Columns["Model"].HeaderText = "Модель";
             dataGridView1.Columns["Year"].HeaderText = "Год";
             dataGridView1.Columns["Country"].HeaderText = "Страна";
-            dataGridView1.Columns["Available"].Visible = false;
+            
             dataGridView1.Columns["Price"].HeaderText = "Цена Руб.";
             dataGridView1.Columns["Odometer"].HeaderText = "Пробег Км.";
+            dataGridView1.Columns["Available"].HeaderText = "Наличие";
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -55,9 +56,9 @@ namespace CarSaloon.Cars
 
         private void cleanBrandButton_Click(object sender, EventArgs e)
         {
-            
-            
-            dataGridView1.DataSource = db.Cars.Local.ToBindingList();
+
+
+            dataGridView1.DataSource = db.Cars.Where(x => x.Available == true).ToList();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -73,7 +74,7 @@ namespace CarSaloon.Cars
                 Car car = db.Cars.Find(id);
 
                 bodyLabel.Text = "Кузов: ";
-                bodyLabel.Text += car.TechData.Body;
+                bodyLabel.Text += car.TechData.Body.Title;
                 driveLabel.Text = "Привод: ";
                 driveLabel.Text += car.TechData.Drive.Title;
                 engineTypeLabel.Text = "Двигатель: ";
@@ -127,8 +128,9 @@ namespace CarSaloon.Cars
         {
             new AddCar().ShowDialog();
 
-            db.Cars.Load();
-            dataGridView1.DataSource = db.Cars.Local.ToBindingList();
+            DBRefresh();
+
+            dataGridView1.DataSource = db.Cars.Where(x => x.Available == true).ToList();
             dataGridView1.Refresh();
         }
 
